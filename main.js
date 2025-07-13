@@ -4,11 +4,11 @@
 
 // Character Slider Logic let currentSlide = 0; const slides = document.querySelectorAll(".slide"); const cards = document.querySelectorAll(".card");
 
-function showSlide(index) { slides.forEach((slide, i) => { slide.classList.remove("active"); cards[i].classList.remove("active"); if (i === index) { slide.classList.add("active"); cards[i].classList.add("active"); } }); }
+function showSlide(index) { if (!slides.length || !cards.length) return; slides.forEach((slide, i) => { slide.classList.remove("active"); cards[i].classList.remove("active"); if (i === index) { slide.classList.add("active"); cards[i].classList.add("active"); } }); }
 
-function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); clickSound2.currentTime = 0; clickSound2.play(); }
+function nextSlide() { if (!slides.length) return; currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); clickSound2.currentTime = 0; clickSound2.play(); }
 
-function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); clickSound2.currentTime = 0; clickSound2.play(); }
+function prevSlide() { if (!slides.length) return; currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); clickSound2.currentTime = 0; clickSound2.play(); }
 
 // Initial Show window.addEventListener("DOMContentLoaded", () => { showSlide(currentSlide); });
 
