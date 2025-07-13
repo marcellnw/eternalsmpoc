@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EternalSMP</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">EternalSMP</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <!-- SIDEBAR MENU -->
+  <nav id="sidebar" class="sidebar">
+    <ul>
+      <li><a href="pendaftaran-server.html" onclick="playClick();">Pendaftaran Server</a></li>
+      <li><a href="pendaftaran-oc.html" onclick="playClick();">Pendaftaran OC</a></li>
+      <li><a href="shop.html" onclick="playClick();">Shop</a></li>
+      <li><a href="news.html" onclick="playClick();">News</a></li>
+      <li><a href="account.html" onclick="playClick();">Account</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>🌌 EternalSMP - Season 14</h1>
+    <p class="synopsis">Ketika batas dunia lama runtuh, enam ras kuno kembali muncul dari bayang-bayang konflik. Siapakah yang akan menguasai kekuatan abadi dari Eternal Crystal?</p>
+  </section>
+
+  <!-- CHARACTER SLIDER -->
+  <section class="character-slider">
+    <div class="slider-container">
+      <button class="prev" onclick="prevSlide()">❮</button>
+      <div class="slides">
+        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png" alt="Euria" class="slide active">
+        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png" alt="Graveth" class="slide">
+        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/maredien.png" alt="Maredien" class="slide">
+        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png" alt="Heretic" class="slide">
+        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png" alt="Diablonic" class="slide">
+        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png" alt="Laurian" class="slide">
+      </div>
+      <button class="next" onclick="nextSlide()">❯</button>
+    </div>
+  </section>
+
+  <!-- CHARACTER INFO CARDS -->
+  <section class="character-info">
+    <div id="characterCards">
+      <div class="card active">
+        <h2>Euria 🧍‍♂️</h2>
+        <p><strong>Ras:</strong> Manusia Murni</p>
+        <p>Ras yang memiliki keseimbangan alami dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk pemain yang menginginkan fleksibilitas tinggi dan bisa beradaptasi dengan berbagai peran.</p>
+        <p><em>Cocok untuk:</em> Semua class – petarung, penyihir, atau pemburu.</p>
+      </div>
+      <div class="card">
+        <h2>Graveth 🦅</h2>
+        <p><strong>Ras:</strong> Makhluk Avian</p>
+        <p>Ras dengan tubuh ringan dan gesit, memiliki kemampuan lompat tinggi dan bisa melayang. Sangat lincah dan efektif dalam mobilitas tinggi di medan tempur.</p>
+        <p><em>Cocok untuk:</em> Assassin, scout, archer, atau class yang butuh kecepatan.</p>
+      </div>
+      <div class="card">
+        <h2>Maredien 🌿</h2>
+        <p><strong>Ras:</strong> Elf / Dryad</p>
+        <p>Bangsawan yang terikat dengan kekuatan alam. Mereka punya afinitas tinggi terhadap sihir penyembuhan dan elemen alami.</p>
+        <p><em>Cocok untuk:</em> Support, healer, mage, druid, atau elementalist.</p>
+      </div>
+      <div class="card">
+        <h2>Heretic 🌓</h2>
+        <p><strong>Ras:</strong> Campuran Manusia & Diablonic</p>
+        <p>Pewaris kekuatan terlarang yang gelap, namun tidak sepenuhnya jahat. Memiliki kemampuan sihir unik dan tidak terduga.</p>
+        <p><em>Cocok untuk:</em> Warlock, dark mage, illusionist, atau class sihir spesial.</p>
+      </div>
+      <div class="card">
+        <h2>Diablonic 🔥</h2>
+        <p><strong>Ras:</strong> Iblis Murni</p>
+        <p>Makhluk kuat dengan tubuh tahan banting, kekuatan besar, dan energi neraka. Namun mereka sering mendapat stigma buruk dari ras lain.</p>
+        <p><em>Cocok untuk:</em> Berserker, tank, brute, atau class ofensif brutal.</p>
+      </div>
+      <div class="card">
+        <h2>Laurian ⚪</h2>
+        <p><strong>Ras:</strong> Manusia Umum (Basic)</p>
+        <p>Ras paling sederhana, hampir mirip dengan Euria tapi lebih lemah. Ras ini diberikan kepada pemain yang mengisi formulir asal-asalan.</p>
+        <p><em>Cocok untuk:</em> Pemula, karakter latar belakang biasa, atau punishment role.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© EternalSMP - Roleplay & Community Server</p>
+    <div class="socials">
+      <a href="https://discord.gg/YCGvq8W3Bp" target="_blank">Discord</a>
+      <a href="https://www.instagram.com/eternalsmp/profilecard/?igsh=MWw4aDhleDFzOGticA==" target="_blank">Instagram</a>
+      <a href="https://www.tiktok.com/@eternalsmpserver?_t=ZS-8xzzVAcllcv&_r=1" target="_blank">TikTok</a>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script src="js/main.js"></script>
+</body>
+</html>
