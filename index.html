@@ -2,105 +2,203 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EternalSMP</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <script defer src="js/main.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EternalSMP - Season 14</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0b0b0e; color: white; font-family: 'Segoe UI', sans-serif; }
+    a { color: inherit; text-decoration: none; }
+
+    .header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; background: #111; border-bottom: 1px solid #444;
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .logo { color: gold; font-weight: bold; font-size: 1.5rem; }
+    .menu-toggle { font-size: 2rem; cursor: pointer; color: gold; }
+
+    .sidebar {
+      position: fixed; left: -100%; top: 0; width: 250px; height: 100%;
+      background: #111; padding-top: 4rem; transition: left 0.3s ease; z-index: 999;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar ul { list-style: none; }
+    .sidebar li { padding: 1rem 2rem; border-bottom: 1px solid #222; }
+    .sidebar a:hover { color: gold; }
+
+    .hero { text-align: center; padding: 2rem; }
+    .hero h1 { color: gold; font-size: 2rem; }
+    .hero p { max-width: 600px; margin: 1rem auto; color: #ccc; }
+
+    .slider-container {
+      position: relative; max-width: 700px; margin: auto;
+    }
+    .slides { display: flex; overflow: hidden; }
+    .slide {
+      min-width: 100%; display: none;
+    }
+    .slide.active { display: block; animation: fadeIn 0.5s ease-in-out; }
+
+    .slider-container button {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.6); color: gold; font-size: 2rem;
+      border: none; padding: 0.5rem 1rem; cursor: pointer;
+    }
+    .prev { left: 0; }
+    .next { right: 0; }
+
+    .character-info {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 1rem; padding: 2rem;
+    }
+    .card {
+      width: 300px; background: #1a1a1f; border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5); padding: 1rem;
+      display: none; opacity: 0;
+    }
+    .card.active {
+      display: block; opacity: 1; animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .info-box {
+      max-width: 700px; margin: 2rem auto; padding: 1rem;
+      background: #151515; border-left: 4px solid gold;
+    }
+
+    .footer {
+      text-align: center; background: #111; padding: 2rem; color: #aaa;
+      margin-top: 3rem;
+    }
+    .socials a {
+      margin: 0 1rem; color: gold; font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .card { width: 90%; }
+      .logo, .menu-toggle { font-size: 1.2rem; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">EternalSMP</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  </header>
+<header class="header">
+  <div class="logo">EternalSMP</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</header>
 
-  <!-- SIDEBAR MENU -->
-  <nav id="sidebar" class="sidebar">
+<nav id="sidebar" class="sidebar">
+  <ul>
+    <li><a href="#" onclick="playClick()">Pendaftaran Server</a></li>
+    <li><a href="#" onclick="playClick()">Pendaftaran OC</a></li>
+    <li><a href="#" onclick="playClick()">Shop</a></li>
+    <li><a href="#" onclick="playClick()">News</a></li>
+    <li><a href="#" onclick="playClick()">Account</a></li>
+  </ul>
+</nav>
+
+<main class="hero">
+  <h1>🌍 Eternal SMP Season 14</h1>
+  <p>Petualangan baru telah dimulai... Pilih ras karaktermu dan bentuk kisahmu sendiri!</p>
+
+  <div class="slider-container">
+    <button class="prev" onclick="prevSlide()">❮</button>
+    <div class="slides">
+      <img class="slide active" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true" alt="Euria" />
+      <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png?raw=true" alt="Graveth" />
+      <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/maredien.png?raw=true" alt="Maredien" />
+      <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png?raw=true" alt="Heretic" />
+      <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png?raw=true" alt="Diablonic" />
+      <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png?raw=true" alt="Laurian" />
+    </div>
+    <button class="next" onclick="nextSlide()">❯</button>
+  </div>
+
+  <div class="character-info">
+    <div class="card active"><b>Euria 🧍‍♂️</b><br>Ras manusia murni. Seimbang & fleksibel.<br><i>Cocok: Semua class</i></div>
+    <div class="card"><b>Graveth 🦅</b><br>Makhluk Avian. Lompat & melayang.<br><i>Cocok: Scout, Assassin</i></div>
+    <div class="card"><b>Maredien 🌿</b><br>Elf/Dryad. Kuat dalam sihir alam.<br><i>Cocok: Druid, Mage</i></div>
+    <div class="card"><b>Heretic 🌓</b><br>Campuran manusia & diablonic. Magis & misterius.<br><i>Cocok: Warlock, Illusionist</i></div>
+    <div class="card"><b>Diablonic 🔥</b><br>Iblis murni. Kuat & brutal.<br><i>Cocok: Tank, Berserker</i></div>
+    <div class="card"><b>Laurian ⚪</b><br>Manusia umum. Default atau hukuman.<br><i>Cocok: Pemula</i></div>
+  </div>
+
+  <div class="info-box">
+    <h3>Cara agar diterima ke Eternal SMP:</h3>
     <ul>
-      <li><a href="pendaftaran-server.html" onclick="playClick();">Pendaftaran Server</a></li>
-      <li><a href="pendaftaran-oc.html" onclick="playClick();">Pendaftaran OC</a></li>
-      <li><a href="shop.html" onclick="playClick();">Shop</a></li>
-      <li><a href="news.html" onclick="playClick();">News</a></li>
-      <li><a href="account.html" onclick="playClick();">Account</a></li>
+      <li>✅ Lore original buatan sendiri</li>
+      <li>🚫 Tidak menggunakan AI</li>
+      <li>✅ Formulir pendaftaran hasil hijau</li>
+      <li>✅ Bisa berbahasa Indonesia dengan baik dan benar</li>
     </ul>
-  </nav>
+  </div>
+</main>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>🌌 EternalSMP - Season 14</h1>
-    <p class="synopsis">Ketika batas dunia lama runtuh, enam ras kuno kembali muncul dari bayang-bayang konflik. Siapakah yang akan menguasai kekuatan abadi dari Eternal Crystal?</p>
-  </section>
+  <script>
+  // Toggle Sidebar
+  function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("active");
+    playClick();
+  }
 
-  <!-- CHARACTER SLIDER -->
-  <section class="character-slider">
-    <div class="slider-container">
-      <button class="prev" onclick="prevSlide()">❮</button>
-      <div class="slides">
-        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png" alt="Euria" class="slide active">
-        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png" alt="Graveth" class="slide">
-        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/maredien.png" alt="Maredien" class="slide">
-        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png" alt="Heretic" class="slide">
-        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png" alt="Diablonic" class="slide">
-        <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png" alt="Laurian" class="slide">
-      </div>
-      <button class="next" onclick="nextSlide()">❯</button>
-    </div>
-  </section>
+  // Sound Click
+  const clickSound1 = new Audio("https://github.com/marcellnw/eternalsmpoc/raw/main/click.m4a");
+  const clickSound2 = new Audio("https://github.com/marcellnw/eternalsmpoc/raw/main/Click2.m4a");
 
-  <!-- CHARACTER INFO CARDS -->
-  <section class="character-info">
-    <div id="characterCards">
-      <div class="card active">
-        <h2>Euria 🧍‍♂️</h2>
-        <p><strong>Ras:</strong> Manusia Murni</p>
-        <p>Ras yang memiliki keseimbangan alami dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk pemain yang menginginkan fleksibilitas tinggi dan bisa beradaptasi dengan berbagai peran.</p>
-        <p><em>Cocok untuk:</em> Semua class – petarung, penyihir, atau pemburu.</p>
-      </div>
-      <div class="card">
-        <h2>Graveth 🦅</h2>
-        <p><strong>Ras:</strong> Makhluk Avian</p>
-        <p>Ras dengan tubuh ringan dan gesit, memiliki kemampuan lompat tinggi dan bisa melayang. Sangat lincah dan efektif dalam mobilitas tinggi di medan tempur.</p>
-        <p><em>Cocok untuk:</em> Assassin, scout, archer, atau class yang butuh kecepatan.</p>
-      </div>
-      <div class="card">
-        <h2>Maredien 🌿</h2>
-        <p><strong>Ras:</strong> Elf / Dryad</p>
-        <p>Bangsawan yang terikat dengan kekuatan alam. Mereka punya afinitas tinggi terhadap sihir penyembuhan dan elemen alami.</p>
-        <p><em>Cocok untuk:</em> Support, healer, mage, druid, atau elementalist.</p>
-      </div>
-      <div class="card">
-        <h2>Heretic 🌓</h2>
-        <p><strong>Ras:</strong> Campuran Manusia & Diablonic</p>
-        <p>Pewaris kekuatan terlarang yang gelap, namun tidak sepenuhnya jahat. Memiliki kemampuan sihir unik dan tidak terduga.</p>
-        <p><em>Cocok untuk:</em> Warlock, dark mage, illusionist, atau class sihir spesial.</p>
-      </div>
-      <div class="card">
-        <h2>Diablonic 🔥</h2>
-        <p><strong>Ras:</strong> Iblis Murni</p>
-        <p>Makhluk kuat dengan tubuh tahan banting, kekuatan besar, dan energi neraka. Namun mereka sering mendapat stigma buruk dari ras lain.</p>
-        <p><em>Cocok untuk:</em> Berserker, tank, brute, atau class ofensif brutal.</p>
-      </div>
-      <div class="card">
-        <h2>Laurian ⚪</h2>
-        <p><strong>Ras:</strong> Manusia Umum (Basic)</p>
-        <p>Ras paling sederhana, hampir mirip dengan Euria tapi lebih lemah. Ras ini diberikan kepada pemain yang mengisi formulir asal-asalan.</p>
-        <p><em>Cocok untuk:</em> Pemula, karakter latar belakang biasa, atau punishment role.</p>
-      </div>
-    </div>
-  </section>
+  function playClick() {
+    clickSound1.currentTime = 0;
+    clickSound1.play();
+  }
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>© EternalSMP - Roleplay & Community Server</p>
-    <div class="socials">
-      <a href="https://discord.gg/YCGvq8W3Bp" target="_blank">Discord</a>
-      <a href="https://www.instagram.com/eternalsmp/profilecard/?igsh=MWw4aDhleDFzOGticA==" target="_blank">Instagram</a>
-      <a href="https://www.tiktok.com/@eternalsmpserver?_t=ZS-8xzzVAcllcv&_r=1" target="_blank">TikTok</a>
-    </div>
-  </footer>
+  // Slider Logic
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
+  const cards = document.querySelectorAll(".card");
 
-  <!-- SCRIPT -->
-  <script src="js/main.js"></script>
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove("active");
+      cards[i].classList.remove("active");
+      if (i === index) {
+        slide.classList.add("active");
+        cards[i].classList.add("active");
+      }
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+    clickSound2.currentTime = 0;
+    clickSound2.play();
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+    clickSound2.currentTime = 0;
+    clickSound2.play();
+  }
+
+  // Init
+  window.addEventListener("DOMContentLoaded", () => {
+    showSlide(currentSlide);
+  });
+</script>
+
+<footer class="footer">
+  <p>© EternalSMP - Server Roleplay Minecraft Indonesia</p>
+  <div class="socials">
+    <a href="https://discord.gg/YCGvq8W3Bp" target="_blank">Discord</a>
+    <a href="https://www.instagram.com/eternalsmp/profilecard/?igsh=MWw4aDhleDFzOGticA==" target="_blank">Instagram</a>
+    <a href="https://www.tiktok.com/@eternalsmpserver?_t=ZS-8xzzVAcllcv&_r=1" target="_blank">TikTok</a>
+  </div>
+</footer>
+
 </body>
 </html>
