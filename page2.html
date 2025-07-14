@@ -441,6 +441,158 @@
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             username: "EternalSMP OC Register",
+<!-- 🔊 Script Suara & Navigasi -->
+<script>
+  function playClick() {
+    document.getElementById("clickSound")?.play();
+  }
+
+  function playClick2() {
+    document.getElementById("Click2Sound")?.play();
+  }
+
+  function showPage(id) {
+    document.querySelectorAll(".container").forEach(div => div.classList.add("hidden"));
+    document.getElementById(id).classList.remove("hidden");
+  }
+
+  function backToForm() {
+    showPage("formPage");
+  }
+
+  // 🔐 Validasi Form Tambahan
+  function validateFormInputs() {
+    const gamertag = document.querySelector("#gamertag").value.trim();
+    const ocname = document.querySelector("#ocname").value.trim();
+    const sifat = document.querySelector("#sifat").value.trim();
+    const lore = document.querySelector("#lore").value.trim();
+    const tujuan = document.querySelector("#tujuan").value.trim();
+
+    if (!/^[\w]{3,16}$/.test(gamertag)) {
+      alert("Gamertag hanya boleh huruf, angka, dan garis bawah, 3-16 karakter.");
+      return false;
+    }
+    if (!/^[a-zA-Z\s]{3,}$/.test(ocname)) {
+      alert("Nama karakter OC minimal 3 huruf dan hanya huruf/spasi.");
+      return false;
+    }
+    if (sifat.split(" ").length < 50) {
+      alert("Sifat & Kepribadian minimal 50 kata.");
+      return false;
+    }
+    if (lore.split(" ").length < 500) {
+      alert("Lore minimal 500 kata.");
+      return false;
+    }
+    if (tujuan.split(" ").length < 300) {
+      alert("Tujuan minimal 300 kata.");
+      return false;
+    }
+    return true;
+  }
+
+  // 👁️ Tampilkan Preview
+  function showPreview() {
+    const form = document.getElementById("ocForm");
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (!validateFormInputs()) return;
+
+    const data = new FormData(form);
+    const previewText = Array.from(data.entries()).map(([key, value]) => {
+      if (key === "image") return "";
+      const label = {
+        gamertag: "🎮 Gamertag",
+        ocname: "👤 Nama Karakter",
+        race: "🧬 Ras",
+        class: "⚔️ Class",
+        job: "🔨 Job",
+        role: "👑 Role",
+        sifat: "🎭 Sifat & Kepribadian",
+        lore: "📖 Lore",
+        tujuan: "🎯 Tujuan & Motivasi"
+      }[key] || key;
+      return `${label}:\n${value.trim()}\n`;
+    }).join("\n");
+
+    document.getElementById("previewContent").innerText = previewText;
+    showPage("previewPage");
+  }
+
+  // 📨 Kirim ke Discord Webhook
+  async function submitToDiscord() {
+    const form = document.getElementById("ocForm");
+    const data = new FormData(form);
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (!validateFormInputs()) return;
+    if (!confirm("Apakah kamu yakin ingin mengirim pendaftaran ini?")) return;
+
+    const imageFile = data.get("image");
+    if (imageFile && imageFile.name && !imageFile.type.startsWith("image/")) {
+      alert("File yang diunggah harus berupa gambar.");
+      return;
+    }
+
+    const fields = [];
+    for (let [key, value] of data.entries()) {
+      if (key !== "image" && value.trim()) {
+        const emoji = {
+          gamertag: "🎮", ocname: "👤", race: "🧬", class: "⚔️",
+          job: "🔨", role: "👑", sifat: "🎭", lore: "📖", tujuan: "🎯"
+        }[key] || "";
+
+        const label = {
+          gamertag: "Nama Gamertag", ocname: "Nama Karakter",
+          race: "Ras", class: "Class", job: "Job", role: "Role Sosial",
+          sifat: "Sifat & Kepribadian", lore: "Lore & Background", tujuan: "Tujuan & Motivasi"
+        }[key] || key;
+
+        const chunks = value.trim().match(/[\s\S]{1,1024}/g) || [];
+        chunks.forEach((chunk, i) => {
+          fields.push({
+            name: `${emoji} ${label}${chunks.length > 1 ? ` (${i + 1})` : ""}`,
+            value: chunk,
+            inline: false
+          });
+        });
+      }
+    }
+
+    const webhook = "https://discord.com/api/webhooks/1389899055672594494/ap4v8BlHwvs8JL8RXmisbPcZDsBZBCImJfkQdawlXPKAN8Uw8rWKPLSnL7P5WOf5vDm5";
+
+    try {
+      let response;
+      if (imageFile && imageFile.name) {
+        const buffer = await imageFile.arrayBuffer();
+        const blob = new Blob([buffer], { type: imageFile.type });
+        const formData = new FormData();
+        formData.append("file", blob, imageFile.name);
+        formData.append("payload_json", JSON.stringify({
+          username: "EternalSMP OC Register",
+          embeds: [{
+            title: "🗡️ Pendaftaran Karakter Baru",
+            description: "Berikut adalah karakter OC yang baru terdaftar:",
+            color: 0xFFD700,
+            fields: fields,
+            image: { url: "attachment://" + imageFile.name }
+          }]
+        }));
+        response = await fetch(webhook, {
+          method: "POST",
+          body: formData
+        });
+      } else {
+        response = await fetch(webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: "EternalSMP OC Register",
             embeds: [{
               title: "🗡️ Pendaftaran Karakter Baru",
               description: "Berikut adalah karakter OC yang baru terdaftar:",
@@ -480,6 +632,4 @@
       console.error(err);
     }
   }
-<script>
-</body>
-</html>
+</script>
