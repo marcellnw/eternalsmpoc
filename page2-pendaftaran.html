@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EternalSMP | Pendaftaran OC</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {font-family: 'Segoe UI', sans-serif; background: #111; color: #fff;}
+    .container {display: none; padding: 2rem; max-width: 1000px; margin: auto;}
+    .container.active {display: block;}
+    h2 {font-family: 'Cinzel', serif; color: #ffd700; margin-bottom: 1.5rem; text-align: center;}
+    .form-columns {display: flex; flex-wrap: wrap; gap: 2rem;}
+    .form-left, .form-right {flex: 1 1 300px; display: flex; flex-direction: column; gap: 1rem;}
+    label {font-weight: bold; color: #ffd700;}
+    input, select, textarea {padding: 0.6rem; font-size: 1rem; border: none; border-radius: 4px; background: #222; color: #fff;}
+    textarea {resize: vertical; min-height: 100px;}
+    button.btn {background: #ffd700; color: #000; font-weight: bold; padding: 0.6rem 1.2rem; border: none; border-radius: 6px; cursor: pointer; margin: 0.5rem auto; display: block;}
+    .btn:hover {opacity: 0.9;}
+    footer {text-align: center; margin-top: 3rem; padding: 1rem 0; color: #aaa; font-size: 14px;}
+    .social {list-style: none; display: flex; justify-content: center; gap: 1rem; margin-top: 0.5rem;}
+    .social li a {color: #ffd700; font-size: 18px;}
+    .dropdown-menu a {color: #ffd700; display: block; padding: 10px; text-decoration: none; border-top: 1px solid #444; background: #000; text-align: center;}
+    .hidden {display: none !important;}
+    #statsContent {font-size: 0.9rem; line-height: 1.5; white-space: pre-wrap; word-wrap: break-word;}
+    #previewContent {white-space: pre-wrap; background: #000; border: 1px solid #ffd700; padding: 1rem; border-radius: 8px;}
+  </style>
+</head>
+<body>
+<audio id="clickSound" src="https://raw.githubusercontent.com/marcellnw/eternalsmp-pendaftaran-oc/main/click.m4a"></audio>
+<audio id="Click2Sound" src="https://raw.githubusercontent.com/marcellnw/eternalsmp-pendaftaran-oc/main/Click2.m4a"></audio><!-- Form Page --><div class="container active" id="formPage">
+  <h2>Pendaftaran Karakter OC</h2>
+  <form id="ocForm">
+    <div class="form-columns">
+      <div class="form-left">
+        <label for="gamertag">Nama Gamertag</label>
+        <input type="text" id="gamertag" name="gamertag" required><label for="ocname">Nama Karakter OC *</label>
+    <input type="text" id="ocname" name="ocname" required>
+
+    <label for="race">Ras</label>
+    <select id="race" name="race" required>
+      <option value="">-- Pilih --</option>
+      <option value="Euria">Euria - Peri cahaya, penjaga alam</option>
+      <option value="Graveth">Graveth - Ras kuat ahli sihir gelap</option>
+      <option value="Maredien">Maredien - Bangsawan diplomatis</option>
+      <option value="Heretic">Heretic - Pemilik sihir terlarang</option>
+      <option value="Diablonic">Diablonic - Iblis haus kuasa</option>
+      <option value="Laurian">Laurian - Pemburu & pelindung hutan</option>
+    </select>
+
+    <label for="class">Class</label>
+    <select id="class" name="class" required>
+      <option value="">-- Pilih --</option>
+      <option>Warrior - Petarung seimbang</option>
+      <option>Berserker - Liar & brutal</option>
+      <option>Tank - Pertahanan tinggi</option>
+      <option>Lancer - Cepat & menusuk</option>
+      <option>Rogue - Licik & lincah</option>
+      <option>Hunter - Jarak jauh</option>
+      <option>Ronin - Pendekar bebas</option>
+      <option>Swordmage - Pedang & sihir</option>
+      <option>Priest - Penyembuh</option>
+    </select>
+  </div>
+
+  <div class="form-right">
+    <label for="job">Job</label>
+    <select id="job" name="job" required>
+      <option value="">-- Pilih --</option>
+      <option>Alchemist - Pembuat ramuan</option>
+      <option>Blacksmith - Pandai besi</option>
+      <option>Trader - Ahli jual beli</option>
+      <option>Farmer - Petani</option>
+      <option>Nitwit - Awal tanpa keahlian</option>
+    </select>
+
+    <label for="role">Role Sosial</label>
+    <select id="role" name="role" required>
+      <option value="">-- Pilih --</option>
+      <option>Raja - Pemimpin utama</option>
+      <option>Bangsawan - Tokoh berpengaruh</option>
+      <option>Royalis - Pendukung kerajaan</option>
+      <option>Worker - Rakyat biasa</option>
+    </select>
+
+    <label for="image">Upload Gambar Karakter</label>
+    <input type="file" id="image" name="image" accept="image/*" />
+
+    <label for="sifat">Sifat & Kepribadian</label>
+    <textarea id="sifat" name="sifat" minlength="50" required></textarea>
+  </div>
+</div>
+
+<label for="lore">Lore & Background (500-3000 kata)</label>
+<textarea id="lore" name="lore" minlength="3000" required></textarea>
+
+<label for="tujuan">Tujuan & Motivasi (300-3000 kata)</label>
+<textarea id="tujuan" name="tujuan" minlength="1000" required></textarea>
+
+<div style="text-align:center">
+  <button type="button" class="btn" onclick="showPreview()">Preview</button>
+</div>
+
+  </form>
+</div><!-- Preview Page --><div class="container hidden" id="previewPage">
+  <h2>Preview Karakter OC</h2>
+  <pre id="previewContent"></pre>
+  <div style="text-align:center">
+    <button class="btn" onclick="showPage('formPage')">Kembali ke Formulir</button>
+    <button class="btn" onclick="submitToDiscord()">Kirim Pendaftaran</button>
+  </div>
+</div><script>
+function playClick() { document.getElementById("clickSound").play(); }
+function showPage(id) {
+  document.querySelectorAll(".container").forEach(c => c.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function showPreview() {
+  const form = document.getElementById("ocForm");
+  if (!form.checkValidity()) return form.reportValidity();
+  const data = new FormData(form);
+  let content = "";
+  for (let [key, value] of data.entries()) {
+    if (key !== "image") {
+      content += `${key.charAt(0).toUpperCase() + key.slice(1)}:\n${value}\n\n`;
+    }
+  }
+  document.getElementById("previewContent").innerText = content;
+  showPage("previewPage");
+}
+
+async function submitToDiscord() {
+  const form = document.getElementById("ocForm");
+  const data = new FormData(form);
+  const webhook = "https://discord.com/api/webhooks/1389899055672594494/ap4v8BlHwvs8JL8RXmisbPcZDsBZBCImJfkQdawlXPKAN8Uw8rWKPLSnL7P5WOf5vDm5";
+  const fields = [];
+  for (let [key, value] of data.entries()) {
+    if (key !== "image" && value.trim()) {
+      fields.push({name: key.charAt(0).toUpperCase() + key.slice(1), value: value.trim().slice(0, 1024)});
+    }
+  }
+  try {
+    const image = data.get("image");
+    if (image && image.name) {
+      const buf = await image.arrayBuffer();
+      const blob = new Blob([buf], { type: image.type });
+      const formData = new FormData();
+      formData.append("file", blob, image.name);
+      formData.append("payload_json", JSON.stringify({
+        username: "EternalSMP OC Register",
+        embeds: [{ title: "Pendaftaran OC Baru", color: 0xFFD700, fields, image: { url: `attachment://${image.name}` } }]
+      }));
+      await fetch(webhook, { method: "POST", body: formData });
+    } else {
+      await fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: "EternalSMP OC Register",
+          embeds: [{ title: "Pendaftaran OC Baru", color: 0xFFD700, fields }]
+        })
+      });
+    }
+    alert("✅ Pendaftaran berhasil dikirim!");
+    form.reset();
+    showPage("formPage");
+  } catch (e) {
+    console.error(e);
+    alert("❌ Gagal mengirim ke Discord.");
+  }
+}
+</script><footer>
+  <p>&copy; 2025 Eternal SMP. All rights reserved.</p>
+  <ul class="social">
+    <li><a href="https://instagram.com/eternalsmp"><i class="fab fa-instagram"></i></a></li>
+    <li><a href="https://youtube.com/@eternalsmpserver"><i class="fab fa-youtube"></i></a></li>
+    <li><a href="https://www.tiktok.com/@eternalsmpserver"><i class="fab fa-tiktok"></i></a></li>
+  </ul>
+</footer>
+</body>
+</html>
