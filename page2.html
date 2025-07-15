@@ -127,7 +127,7 @@
       color: var(--gold);
       font-size: 18px;
     }
-    .word-counter {
+    .char-counter {
       font-size: 12px;
       margin-top: 4px;
       color: #aaa;
@@ -206,17 +206,17 @@
 
           <label for="sifat">🎭 Sifat & Kepribadian</label>
           <textarea id="sifat" name="sifat" minlength="50" required></textarea>
-          <div id="sifatCount" class="word-counter">Jumlah kata: 0 / minimal 50</div>
+          <div id="sifatCount" class="char-counter">Jumlah karakter: 0 / minimal 50</div>
         </div>
       </div>
       <!-- Lore & Tujuan -->
       <label for="lore">📖 Lore & Background Karakter</label>
       <textarea id="lore" name="lore" minlength="300" maxlength="3000" required></textarea>
-      <div id="loreCount" class="word-counter">Jumlah kata: 0 / minimal 300</div>
+      <div id="loreCount" class="char-counter">Jumlah karakter: 0 / minimal 300</div>
 
       <label for="tujuan">🎯 Tujuan & Motivasi Karakter</label>
       <textarea id="tujuan" name="tujuan" minlength="100" maxlength="500" required></textarea>
-      <div id="tujuanCount" class="word-counter">Jumlah kata: 0 / minimal 100</div>
+      <div id="tujuanCount" class="char-counter">Jumlah karakter: 0 / minimal 100</div>
 
       <!-- Tombol Aksi -->
       <div style="text-align:center; margin-top: 1.5rem;">
@@ -240,197 +240,196 @@
     </ul>
   </footer>
   <!-- Script -->
-  <script>
-    // 🔊 Suara klik
-    function playClick() {
-      document.getElementById("clickSound")?.play();
+<script>
+  // 🔊 Suara klik
+  function playClick() {
+    document.getElementById("clickSound")?.play();
+  }
+  function playClick2() {
+    document.getElementById("Click2Sound")?.play();
+  }
+
+  // 🔢 Penghitung karakter real-time
+  function updateCharCount(id, min, max = null) {
+    const textarea = document.getElementById(id);
+    const counter = document.getElementById(id + "Count");
+
+    textarea.addEventListener("input", () => {
+      const length = textarea.value.length;
+      counter.textContent = `Jumlah karakter: ${length} / minimal ${min}` + (max ? `, maksimal ${max}` : '');
+      counter.style.color = (length >= min && (!max || length <= max)) ? "#0f0" : "#f00";
+    });
+  }
+
+  updateCharCount("sifat", 50);
+  updateCharCount("lore", 300, 3000);
+  updateCharCount("tujuan", 100, 500);
+
+  // 🔐 Validasi input tambahan
+  function validateFormInputs() {
+    const gamertag = document.querySelector("#gamertag").value.trim();
+    const ocname = document.querySelector("#ocname").value.trim();
+    const sifat = document.querySelector("#sifat").value.trim();
+    const lore = document.querySelector("#lore").value.trim();
+    const tujuan = document.querySelector("#tujuan").value.trim();
+
+    if (!/^[\w]{3,16}$/.test(gamertag)) {
+      alert("Gamertag hanya boleh huruf, angka, dan garis bawah, 3-16 karakter.");
+      return false;
     }
-    function playClick2() {
-      document.getElementById("Click2Sound")?.play();
+    if (!/^[a-zA-Z\s]{3,}$/.test(ocname)) {
+      alert("Nama karakter OC minimal 3 huruf dan hanya huruf/spasi.");
+      return false;
+    }
+    if (sifat.length < 50) {
+      alert("Sifat & Kepribadian minimal 50 karakter.");
+      return false;
+    }
+    if (lore.length < 300) {
+      alert("Lore minimal 300 karakter.");
+      return false;
+    }
+    if (tujuan.length < 100) {
+      alert("Tujuan minimal 100 karakter.");
+      return false;
     }
 
-    // 🔢 Penghitung kata
-    function countWords(text) {
-      return (text.trim().match(/\b\w+\b/g) || []).length;
+    return true;
+  }
+  async function submitToDiscord() {
+    const form = document.getElementById("ocForm");
+    const data = new FormData(form);
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    if (!validateFormInputs()) return;
+    if (!confirm("Apakah kamu yakin ingin mengirim pendaftaran ini?")) return;
+
+    const imageFile = data.get("image");
+    if (imageFile && imageFile.name && !imageFile.type.startsWith("image/")) {
+      alert("File yang diunggah harus berupa gambar.");
+      return;
     }
 
-    function updateWordCount(id, min, max = null) {
-      const textarea = document.getElementById(id);
-      const counter = document.getElementById(id + "Count");
+    const webhook = "https://discord.com/api/webhooks/1389899055672594494/ap4v8BlHwvs8JL8RXmisbPcZDsBZBCImJfkQdawlXPKAN8Uw8rWKPLSnL7P5WOf5vDm5";
 
-      textarea.addEventListener("input", () => {
-        const wordCount = countWords(textarea.value);
-        counter.textContent = `Jumlah kata: ${wordCount} / minimal ${min}` + (max ? `, maksimal ${max}` : '');
-        counter.style.color = wordCount >= min && (!max || wordCount <= max) ? "#0f0" : "#f00";
-      });
+    const infoFields = [];
+    let loreChunks = [], tujuanChunks = [];
+
+    for (let [key, value] of data.entries()) {
+      if (key === "image") continue;
+      const text = value.trim();
+      const chunks = text.match(/.{1,1024}/gs) || [];
+      const emoji = {
+        gamertag: "🎮", ocname: "👤", race: "🧬", class: "⚔️",
+        job: "🔨", role: "👑", sifat: "🎭", lore: "📖", tujuan: "🎯"
+      }[key] || "";
+
+      const label = {
+        gamertag: "Nama Gamertag", ocname: "Nama Karakter",
+        race: "Ras", class: "Class", job: "Job", role: "Role Sosial",
+        sifat: "Sifat & Kepribadian", lore: "Lore & Background", tujuan: "Tujuan & Motivasi"
+      }[key] || key;
+
+      const mappedChunks = chunks.map((chunk, i) => ({
+        name: `${emoji} ${label}${chunks.length > 1 ? ` (${i + 1})` : ""}`,
+        value: chunk,
+        inline: false
+      }));
+
+      if (key === "lore") loreChunks = mappedChunks;
+      else if (key === "tujuan") tujuanChunks = mappedChunks;
+      else infoFields.push(mappedChunks[0]);
     }
 
-    updateWordCount("sifat", 50);
-    updateWordCount("lore", 300, 3000);
-    updateWordCount("tujuan", 100, 500);
-
-    // 🔐 Validasi tambahan
-    function validateFormInputs() {
-      const gamertag = document.querySelector("#gamertag").value.trim();
-      const ocname = document.querySelector("#ocname").value.trim();
-      const sifat = document.querySelector("#sifat").value.trim();
-      const lore = document.querySelector("#lore").value.trim();
-      const tujuan = document.querySelector("#tujuan").value.trim();
-
-      if (!/^[\w]{3,16}$/.test(gamertag)) {
-        alert("Gamertag hanya boleh huruf, angka, dan garis bawah, 3-16 karakter.");
-        return false;
+    const embeds = [
+      {
+        title: "🗡️ Pendaftaran Karakter Baru",
+        description: "Berikut adalah karakter OC yang baru terdaftar:",
+        color: 0xFFD700,
+        fields: infoFields
+      },
+      {
+        title: "📖 Lore & Background",
+        color: 0x5865F2,
+        fields: loreChunks
+      },
+      {
+        title: "🎯 Tujuan & Motivasi",
+        color: 0x57F287,
+        fields: tujuanChunks
       }
-      if (!/^[a-zA-Z\s]{3,}$/.test(ocname)) {
-        alert("Nama karakter OC minimal 3 huruf dan hanya huruf/spasi.");
-        return false;
-      }
-      if (countWords(sifat) < 50) {
-        alert("Sifat & Kepribadian minimal 50 kata.");
-        return false;
-      }
-      if (countWords(lore) < 300) {
-        alert("Lore minimal 300 kata.");
-        return false;
-      }
-      if (countWords(tujuan) < 100) {
-        alert("Tujuan minimal 100 kata.");
-        return false;
-      }
+    ];
 
-      return true;
-    }
-    async function submitToDiscord() {
-      const form = document.getElementById("ocForm");
-      const data = new FormData(form);
+    try {
+      let response;
 
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      if (!validateFormInputs()) return;
-      if (!confirm("Apakah kamu yakin ingin mengirim pendaftaran ini?")) return;
+      if (imageFile && imageFile.name) {
+        const buffer = await imageFile.arrayBuffer();
+        const blob = new Blob([buffer], { type: imageFile.type });
 
-      const imageFile = data.get("image");
-      if (imageFile && imageFile.name && !imageFile.type.startsWith("image/")) {
-        alert("File yang diunggah harus berupa gambar.");
-        return;
-      }
-
-      const webhook = "https://discord.com/api/webhooks/1389899055672594494/ap4v8BlHwvs8JL8RXmisbPcZDsBZBCImJfkQdawlXPKAN8Uw8rWKPLSnL7P5WOf5vDm5";
-
-      const infoFields = [];
-      let loreChunks = [], tujuanChunks = [];
-
-      for (let [key, value] of data.entries()) {
-        if (key === "image") continue;
-        const text = value.trim();
-        const chunks = text.match(/.{1,1024}/gs) || [];
-        const emoji = {
-          gamertag: "🎮", ocname: "👤", race: "🧬", class: "⚔️",
-          job: "🔨", role: "👑", sifat: "🎭", lore: "📖", tujuan: "🎯"
-        }[key] || "";
-
-        const label = {
-          gamertag: "Nama Gamertag", ocname: "Nama Karakter",
-          race: "Ras", class: "Class", job: "Job", role: "Role Sosial",
-          sifat: "Sifat & Kepribadian", lore: "Lore & Background", tujuan: "Tujuan & Motivasi"
-        }[key] || key;
-
-        const mappedChunks = chunks.map((chunk, i) => ({
-          name: `${emoji} ${label}${chunks.length > 1 ? ` (${i + 1})` : ""}`,
-          value: chunk,
-          inline: false
+        const formData = new FormData();
+        formData.append("file", blob, imageFile.name);
+        formData.append("payload_json", JSON.stringify({
+          username: "EternalSMP OC Register",
+          embeds: [
+            { ...embeds[0], image: { url: "attachment://" + imageFile.name } },
+            embeds[1],
+            embeds[2]
+          ]
         }));
 
-        if (key === "lore") loreChunks = mappedChunks;
-        else if (key === "tujuan") tujuanChunks = mappedChunks;
-        else infoFields.push(mappedChunks[0]);
-      }
-
-      const embeds = [
-        {
-          title: "🗡️ Pendaftaran Karakter Baru",
-          description: "Berikut adalah karakter OC yang baru terdaftar:",
-          color: 0xFFD700,
-          fields: infoFields
-        },
-        {
-          title: "📖 Lore & Background",
-          color: 0x5865F2,
-          fields: loreChunks
-        },
-        {
-          title: "🎯 Tujuan & Motivasi",
-          color: 0x57F287,
-          fields: tujuanChunks
-        }
-      ];
-
-      try {
-        let response;
-
-        if (imageFile && imageFile.name) {
-          const buffer = await imageFile.arrayBuffer();
-          const blob = new Blob([buffer], { type: imageFile.type });
-
-          const formData = new FormData();
-          formData.append("file", blob, imageFile.name);
-          formData.append("payload_json", JSON.stringify({
+        response = await fetch(webhook, {
+          method: "POST",
+          body: formData
+        });
+      } else {
+        response = await fetch(webhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
             username: "EternalSMP OC Register",
-            embeds: [
-              { ...embeds[0], image: { url: "attachment://" + imageFile.name } },
-              embeds[1],
-              embeds[2]
-            ]
-          }));
-
-          response = await fetch(webhook, {
-            method: "POST",
-            body: formData
-          });
-        } else {
-          response = await fetch(webhook, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              username: "EternalSMP OC Register",
-              embeds: embeds
-            })
-          });
-        }
-
-        if (!response.ok) {
-          throw new Error("Gagal mengirim ke Discord: " + (await response.text()));
-        }
-
-        // 💾 Simpan ke localStorage
-        const ocEntry = {
-          gamertag: data.get("gamertag"),
-          ocname: data.get("ocname"),
-          race: data.get("race"),
-          class: data.get("class"),
-          job: data.get("job"),
-          role: data.get("role"),
-          sifat: data.get("sifat"),
-          lore: data.get("lore"),
-          tujuan: data.get("tujuan")
-        };
-        const saved = JSON.parse(localStorage.getItem("pendaftarOCList") || "[]");
-        saved.push(ocEntry);
-        localStorage.setItem("pendaftarOCList", JSON.stringify(saved));
-
-        alert("✅ Pendaftaran berhasil dikirim!");
-        form.reset();
-        document.getElementById("sifatCount").textContent = "Jumlah kata: 0 / minimal 50";
-        document.getElementById("loreCount").textContent = "Jumlah kata: 0 / minimal 300";
-        document.getElementById("tujuanCount").textContent = "Jumlah kata: 0 / minimal 100";
-        window.scrollTo(0, 0);
-      } catch (err) {
-        alert("❌ Gagal mengirim ke Discord. Silakan cek koneksi atau webhook.");
-        console.error(err);
+            embeds: embeds
+          })
+        });
       }
+
+      if (!response.ok) {
+        throw new Error("Gagal mengirim ke Discord: " + (await response.text()));
+      }
+
+      // 💾 Simpan ke localStorage
+      const ocEntry = {
+        gamertag: data.get("gamertag"),
+        ocname: data.get("ocname"),
+        race: data.get("race"),
+        class: data.get("class"),
+        job: data.get("job"),
+        role: data.get("role"),
+        sifat: data.get("sifat"),
+        lore: data.get("lore"),
+        tujuan: data.get("tujuan")
+      };
+      const saved = JSON.parse(localStorage.getItem("pendaftarOCList") || "[]");
+      saved.push(ocEntry);
+      localStorage.setItem("pendaftarOCList", JSON.stringify(saved));
+
+      alert("✅ Pendaftaran berhasil dikirim!");
+      form.reset();
+      document.getElementById("sifatCount").textContent = "Jumlah karakter: 0 / minimal 50";
+      document.getElementById("loreCount").textContent = "Jumlah karakter: 0 / minimal 300";
+      document.getElementById("tujuanCount").textContent = "Jumlah karakter: 0 / minimal 100";
+      document.getElementById("sifatCount").style.color = "#aaa";
+      document.getElementById("loreCount").style.color = "#aaa";
+      document.getElementById("tujuanCount").style.color = "#aaa";
+      window.scrollTo(0, 0);
+    } catch (err) {
+      alert("❌ Gagal mengirim ke Discord. Silakan cek koneksi atau webhook.");
+      console.error(err);
     }
-  </script>
+  }
+</script>
 </body>
 </html>
