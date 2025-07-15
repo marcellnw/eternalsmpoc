@@ -2,6 +2,8 @@
 const slides = document.querySelectorAll(".slide");
 const cards = document.querySelectorAll(".card");
 const sidebar = document.getElementById("sidebar");
+const menuToggle = document.querySelector(".menu-toggle");
+const sidebarLinks = sidebar.querySelectorAll("a");
 
 let currentSlide = 0;
 
@@ -32,6 +34,14 @@ function toggleMenu() {
   document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
   playClick();
 }
+
+// Tutup sidebar setelah klik link
+sidebarLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    document.body.style.overflow = "auto";
+  });
+});
 
 // === SUARA KLIK ===
 const clickSound = new Audio("https://github.com/marcellnw/eternalsmpoc/blob/main/click.m4a?raw=true");
