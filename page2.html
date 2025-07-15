@@ -127,6 +127,11 @@
       color: var(--gold);
       font-size: 18px;
     }
+    .word-counter {
+      font-size: 12px;
+      margin-top: 4px;
+      color: #aaa;
+    }
   </style>
 </head>
 <body>
@@ -201,25 +206,27 @@
 
           <label for="sifat">🎭 Sifat & Kepribadian</label>
           <textarea id="sifat" name="sifat" minlength="50" required></textarea>
+          <div id="sifatCount" class="word-counter">Jumlah kata: 0 / minimal 50</div>
         </div>
       </div>
       <!-- Lore & Tujuan -->
       <label for="lore">📖 Lore & Background Karakter</label>
       <textarea id="lore" name="lore" minlength="300" maxlength="3000" required></textarea>
+      <div id="loreCount" class="word-counter">Jumlah kata: 0 / minimal 300</div>
 
       <label for="tujuan">🎯 Tujuan & Motivasi Karakter</label>
       <textarea id="tujuan" name="tujuan" minlength="100" maxlength="500" required></textarea>
+      <div id="tujuanCount" class="word-counter">Jumlah kata: 0 / minimal 100</div>
 
       <!-- Tombol Aksi -->
-<div style="text-align:center; margin-top: 1.5rem;">
-  <button type="button" class="btn glow-btn" onclick="playClick(); window.open('eternalsmp-oc-form.html', '_blank')">
-    👁️ Lihat Preview
-  </button>
-  <button type="button" class="btn glow-btn" onclick="playClick(); submitToDiscord()">
-    📨 Kirim Pendaftaran
-  </button>
-</div>
-</button>
+      <div style="text-align:center; margin-top: 1.5rem;">
+        <button type="button" class="btn glow-btn" onclick="playClick(); window.open('eternalsmp-oc-form.html', '_blank')">
+          👁️ Lihat Preview
+        </button>
+        <button type="button" class="btn glow-btn" onclick="playClick(); submitToDiscord()">
+          📨 Kirim Pendaftaran
+        </button>
+      </div>
     </form>
   </div>
 
@@ -242,7 +249,27 @@
       document.getElementById("Click2Sound")?.play();
     }
 
-    // 🔐 Validasi input tambahan
+    // 🔢 Penghitung kata
+    function countWords(text) {
+      return (text.trim().match(/\b\w+\b/g) || []).length;
+    }
+
+    function updateWordCount(id, min, max = null) {
+      const textarea = document.getElementById(id);
+      const counter = document.getElementById(id + "Count");
+
+      textarea.addEventListener("input", () => {
+        const wordCount = countWords(textarea.value);
+        counter.textContent = `Jumlah kata: ${wordCount} / minimal ${min}` + (max ? `, maksimal ${max}` : '');
+        counter.style.color = wordCount >= min && (!max || wordCount <= max) ? "#0f0" : "#f00";
+      });
+    }
+
+    updateWordCount("sifat", 50);
+    updateWordCount("lore", 300, 3000);
+    updateWordCount("tujuan", 100, 500);
+
+    // 🔐 Validasi tambahan
     function validateFormInputs() {
       const gamertag = document.querySelector("#gamertag").value.trim();
       const ocname = document.querySelector("#ocname").value.trim();
@@ -258,22 +285,21 @@
         alert("Nama karakter OC minimal 3 huruf dan hanya huruf/spasi.");
         return false;
       }
-      if (sifat.split(/\s+/).length < 50) {
+      if (countWords(sifat) < 50) {
         alert("Sifat & Kepribadian minimal 50 kata.");
         return false;
       }
-      if (lore.split(/\s+/).length < 300) {
+      if (countWords(lore) < 300) {
         alert("Lore minimal 300 kata.");
         return false;
       }
-      if (tujuan.split(/\s+/).length < 100) {
+      if (countWords(tujuan) < 100) {
         alert("Tujuan minimal 100 kata.");
         return false;
       }
 
       return true;
     }
-
     async function submitToDiscord() {
       const form = document.getElementById("ocForm");
       const data = new FormData(form);
@@ -293,7 +319,7 @@
 
       const webhook = "https://discord.com/api/webhooks/1389899055672594494/ap4v8BlHwvs8JL8RXmisbPcZDsBZBCImJfkQdawlXPKAN8Uw8rWKPLSnL7P5WOf5vDm5";
 
-    const infoFields = [];
+      const infoFields = [];
       let loreChunks = [], tujuanChunks = [];
 
       for (let [key, value] of data.entries()) {
@@ -396,6 +422,9 @@
 
         alert("✅ Pendaftaran berhasil dikirim!");
         form.reset();
+        document.getElementById("sifatCount").textContent = "Jumlah kata: 0 / minimal 50";
+        document.getElementById("loreCount").textContent = "Jumlah kata: 0 / minimal 300";
+        document.getElementById("tujuanCount").textContent = "Jumlah kata: 0 / minimal 100";
         window.scrollTo(0, 0);
       } catch (err) {
         alert("❌ Gagal mengirim ke Discord. Silakan cek koneksi atau webhook.");
