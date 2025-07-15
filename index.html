@@ -4,12 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EternalSMP - Season 14</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #ffd700;
+      --dark-bg: #0d0d0d;
+      --accent: #1f1f1f;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      background: linear-gradient(to bottom, var(--dark-bg), #151515);
+      color: #fff;
+      overflow-x: hidden;
+      animation: fadeIn 1.5s ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--accent);
+      padding: 18px 24px;
+      border-bottom: 2px solid var(--gold);
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 28px;
+      color: var(--gold);
+      text-shadow: 0 0 5px #ffc;
+      animation: popIn 0.8s ease-out;
+    }
+
+    .menu-toggle {
+      font-size: 26px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      color: var(--gold);
+      transform: scale(1.2);
+    }
+
+    /* Sidebar Menu */
+    .sidebar {
+      display: none;
+      position: absolute;
+      top: 64px;
+      right: 0;
+      width: 220px;
+      background: #1c1c1c;
+      border-left: 1px solid var(--gold);
+      z-index: 99;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar ul li a {
+      display: block;
+      padding: 12px 16px;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      border-bottom: 1px solid #333;
+    }
+
+    .sidebar ul li a:hover {
+      background: #292929;
+      color: var(--gold);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+  </style>
 </head>
 <body>
 
   <!-- Header -->
-  <header class="header">
+  <header>
     <div class="logo">EternalSMP</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   </header>
@@ -18,79 +120,145 @@
   <nav id="sidebar" class="sidebar">
     <ul>
       <li><a href="page2.html">Pendaftaran OC</a></li>
-      <li><a href="#">Pendaftaran Server</a></li>
-      <li><a href="#">Cerita dan Sinopsis</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd33CH_UBNKC4FrHwIFKMhzR160hNZ0MQ-in7kJdtmK6UQLmQ/viewform" target="_blank">Pendaftaran Server</a></li>
+      <li><a href="#cerita">Cerita & Sinopsis</a></li>
       <li><a href="#">Dashboard</a></li>
       <li><a href="#">Shop</a></li>
     </ul>
   </nav>
-
   <!-- Hero Section -->
-  <main class="hero">
-    <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/20250625_141013.png?raw=true" alt="Logo EternalSMP" class="eternal-logo">
-    <h1>🌍 Eternal SMP Season 14</h1>
-    <p>Petualangan baru telah dimulai. Pilih ras karaktermu dan bentuk kisahmu sendiri!</p>
+  <main class="hero" style="text-align:center; padding: 60px 20px 40px;">
+    <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/20250625_141013.png?raw=true"
+         alt="Logo EternalSMP"
+         class="eternal-logo"
+         style="width: 180px; margin-bottom: 24px; animation: popIn 1.2s ease-out;">
+    
+    <h1 style="font-size: 36px; color: var(--gold); animation: fadeIn 1s ease;">🌍 Eternal SMP Season 14</h1>
+    <p style="max-width: 700px; margin: 16px auto; font-size: 17px; color: #ccc; animation: fadeIn 1.5s ease;">
+      Sebuah era baru dimulai. Bangun kisahmu, bentuk karakter unikmu, dan pilih ras yang akan menentukan takdirmu di dunia Eternal.
+    </p>
+
+    <!-- Slider Karakter -->
+    <div class="slider-container" style="position:relative; max-width: 520px; margin: 40px auto; overflow: hidden;">
+      <button class="prev" onclick="prevSlide()" style="position:absolute; left:0; top:50%; transform:translateY(-50%);
+        background:transparent; border:none; font-size: 28px; color: #ffd700; cursor:pointer;">❮</button>
+      
+      <div class="slides" style="display:flex; transition: transform 0.5s ease;">
+        <img class="slide active" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true"
+             alt="Euria" style="width:100%; display:block; border-radius:12px; box-shadow: 0 0 15px #222;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png?raw=true"
+             alt="Graveth" style="width:100%; display:none; border-radius:12px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/meredien.png?raw=true"
+             alt="Meredien" style="width:100%; display:none; border-radius:12px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png?raw=true"
+             alt="Heretic" style="width:100%; display:none; border-radius:12px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png?raw=true"
+             alt="Diablonic" style="width:100%; display:none; border-radius:12px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png?raw=true"
+             alt="Laurian" style="width:100%; display:none; border-radius:12px;" />
+      </div>
+
+      <button class="next" onclick="nextSlide()" style="position:absolute; right:0; top:50%; transform:translateY(-50%);
+        background:transparent; border:none; font-size: 28px; color: #ffd700; cursor:pointer;">❯</button>
+    </div>
+          </main>
+          <!-- Hero Section -->
+  <main class="hero" style="text-align: center; padding: 60px 20px; background: radial-gradient(circle, #1a1a1a, #000); color: #fff;">
+    <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/20250625_141013.png?raw=true" alt="Logo EternalSMP" class="eternal-logo"
+         style="max-width: 180px; animation: fadeIn 1s ease-in-out;">
+    <h1 style="font-family: 'Cinzel', serif; font-size: 32px; margin-top: 20px; color: var(--gold); animation: fadeIn 1.3s;">🌍 Eternal SMP Season 14</h1>
+    <p style="max-width: 700px; margin: 12px auto 36px; font-size: 16px; color: #ccc; animation: fadeIn 1.6s;">
+      Petualangan baru telah dimulai. Pilih ras karaktermu dan bentuk kisahmu sendiri di dunia magis yang kaya dengan konflik dan legenda!
+    </p>
 
     <!-- Character Slider -->
-    <div class="slider-container">
-      <button class="prev" onclick="prevSlide()">❮</button>
-      <div class="slides">
-        <img class="slide active" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true" alt="Euria" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png?raw=true" alt="Graveth" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/meredien.png?raw=true" alt="Meredien" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png?raw=true" alt="Heretic" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png?raw=true" alt="Diablonic" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png?raw=true" alt="Laurian" />
+    <div class="slider-container" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 32px;">
+      <button class="prev" onclick="prevSlide()" style="font-size: 24px; background: transparent; border: none; color: var(--gold); cursor: pointer;">❮</button>
+      <div class="slides" style="display: flex; overflow: hidden; width: 300px;">
+        <img class="slide active" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true" alt="Euria" style="width: 300px; border-radius: 8px; transition: transform 0.5s ease;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png?raw=true" alt="Graveth" style="width: 300px; border-radius: 8px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/meredien.png?raw=true" alt="Meredien" style="width: 300px; border-radius: 8px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png?raw=true" alt="Heretic" style="width: 300px; border-radius: 8px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png?raw=true" alt="Diablonic" style="width: 300px; border-radius: 8px;" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png?raw=true" alt="Laurian" style="width: 300px; border-radius: 8px;" />
       </div>
-      <button class="next" onclick="nextSlide()">❯</button>
+      <button class="next" onclick="nextSlide()" style="font-size: 24px; background: transparent; border: none; color: var(--gold); cursor: pointer;">❯</button>
     </div>
 
     <!-- Character Descriptions -->
-    <section class="character-info">
-      <div class="card active" data-character="Euria">
-        <h2>Euria 🧍‍♂️</h2>
-        <p><strong>Ras:</strong> Manusia Murni</p>
-        <p>Ras yang memiliki keseimbangan alami dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk pemain yang menginginkan fleksibilitas tinggi dan bisa beradaptasi dengan berbagai peran.</p>
-        <p><em>Cocok untuk: Semua class – petarung, penyihir, pemburu</em></p>
+    <section class="character-info" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; padding: 0 16px;">
+      <div class="card active" data-character="Euria" style="background: #1b1b1b; padding: 20px; border: 1px solid var(--gold); border-radius: 10px; max-width: 300px;">
+        <h2 style="color: var(--gold); font-family: 'Cinzel', serif;">Euria 🧚‍♂️</h2>
+        <p><strong>Ras:</strong> Peri Cahaya</p>
+        <p>Pengemban kekuatan cahaya dan penyembuhan. Berasal dari Astravell dan dikenal akan kelembutannya.</p>
+        <p><em>Cocok untuk: Priest, Mage, Druid</em></p>
       </div>
 
-      <div class="card" data-character="Graveth">
-        <h2>Graveth 🦅</h2>
+      <div class="card" data-character="Graveth" style="background: #1b1b1b; padding: 20px; border: 1px solid var(--gold); border-radius: 10px; max-width: 300px;">
+        <h2 style="color: var(--gold); font-family: 'Cinzel', serif;">Graveth 🦅</h2>
         <p><strong>Ras:</strong> Makhluk Avian</p>
-        <p>Ras dengan tubuh ringan dan gesit, memiliki kemampuan lompat tinggi dan bisa melayang. Efektif dalam mobilitas tinggi di medan tempur.</p>
-        <p><em>Cocok untuk: Assassin, scout, archer</em></p>
+        <p>Ras gesit dan misterius dengan kecepatan dan akurasi luar biasa.</p>
+        <p><em>Cocok untuk: Archer, Assassin, Scout</em></p>
       </div>
 
-      <div class="card" data-character="Maredien">
-        <h2>Maredien 🌿</h2>
+      <div class="card" data-character="Maredien" style="background: #1b1b1b; padding: 20px; border: 1px solid var(--gold); border-radius: 10px; max-width: 300px;">
+        <h2 style="color: var(--gold); font-family: 'Cinzel', serif;">Maredien 🌿</h2>
         <p><strong>Ras:</strong> Elf / Dryad</p>
-        <p>Bangsawan yang terikat dengan kekuatan alam. Punya afinitas tinggi terhadap sihir penyembuhan dan elemen alami.</p>
-        <p><em>Cocok untuk: Support, healer, mage, druid</em></p>
+        <p>Pemimpin diplomatis dari utara yang menjaga keseimbangan alam.</p>
+        <p><em>Cocok untuk: Healer, Druid, Support</em></p>
       </div>
 
-      <div class="card" data-character="Heretic">
-        <h2>Heretic 🌓</h2>
-        <p><strong>Ras:</strong> Campuran Manusia & Diablonic</p>
-        <p>Pewaris kekuatan gelap yang unik dan tidak terduga. Tidak sepenuhnya jahat.</p>
-        <p><em>Cocok untuk: Warlock, dark mage, illusionist</em></p>
+      <div class="card" data-character="Heretic" style="background: #1b1b1b; padding: 20px; border: 1px solid var(--gold); border-radius: 10px; max-width: 300px;">
+        <h2 style="color: var(--gold); font-family: 'Cinzel', serif;">Heretic 🌘</h2>
+        <p><strong>Ras:</strong> Campuran Terlarang</p>
+        <p>Pengguna sihir gelap yang dibuang, terikat oleh kekuatan bulan gelap.</p>
+        <p><em>Cocok untuk: Warlock, Dark Mage</em></p>
       </div>
 
-      <div class="card" data-character="Diablonic">
-        <h2>Diablonic 🔥</h2>
-        <p><strong>Ras:</strong> Iblis Murni</p>
-        <p>Makhluk kuat, tahan banting, dan penuh energi neraka. Sering mendapat stigma dari ras lain.</p>
-        <p><em>Cocok untuk: Berserker, tank, brute</em></p>
+      <div class="card" data-character="Diablonic" style="background: #1b1b1b; padding: 20px; border: 1px solid var(--gold); border-radius: 10px; max-width: 300px;">
+        <h2 style="color: var(--gold); font-family: 'Cinzel', serif;">Diablonic 🔥</h2>
+        <p><strong>Ras:</strong> Iblis Neraka</p>
+        <p>Prajurit brutal dari dimensi bawah. Kekuatannya luar biasa tapi sulit dikendalikan.</p>
+        <p><em>Cocok untuk: Tank, Berserker, Juggernaut</em></p>
       </div>
 
-      <div class="card" data-character="Laurian">
-        <h2>Laurian ⚪</h2>
-        <p><strong>Ras:</strong> Manusia Umum (Basic)</p>
-        <p>Ras paling sederhana dan lemah. Diberikan kepada pemain yang mengisi formulir asal-asalan.</p>
-        <p><em>Cocok untuk: Pemula, karakter latar belakang biasa</em></p>
+      <div class="card" data-character="Laurian" style="background: #1b1b1b; padding: 20px; border: 1px solid var(--gold); border-radius: 10px; max-width: 300px;">
+        <h2 style="color: var(--gold); font-family: 'Cinzel', serif;">Laurian ⚪</h2>
+        <p><strong>Ras:</strong> Manusia Umum</p>
+        <p>Ras paling dasar. Cocok untuk latar belakang pemula atau karakter misterius tak dikenal.</p>
+        <p><em>Cocok untuk: Semua class pemula</em></p>
       </div>
     </section>
   </main>
+  <!-- CTA Pendaftaran -->
+  <section style="padding: 60px 20px; text-align: center; background: #111; color: #fff;">
+    <h2 style="font-family: 'Cinzel', serif; font-size: 28px; color: var(--gold); margin-bottom: 16px; animation: fadeIn 1s;">
+      Siap Membentuk Takdirmu?
+    </h2>
+    <p style="max-width: 700px; margin: 0 auto 32px; font-size: 16px; color: #ccc; animation: fadeIn 1.4s;">
+      Pilih ras dan kisah karaktermu, lalu daftarkan OC-mu untuk menjadi bagian dari kisah besar Eternal SMP Season 14!
+    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd33CH_UBNKC4FrHwIFKMhzR160hNZ0MQ-in7kJdtmK6UQLmQ/viewform"
+       target="_blank"
+       style="display: inline-block; background: var(--gold); color: #000; font-weight: bold; padding: 12px 24px; border-radius: 10px; text-decoration: none; transition: transform 0.3s ease; animation: fadeInUp 1.7s;">
+      📜 Daftar Sekarang
+    </a>
+  </section>
 
+  <!-- Lore & Cerita Dunia -->
+  <section style="background: linear-gradient(to right, #1c1c1c, #111); padding: 60px 20px; color: #f0f0f0;">
+    <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: 'Cinzel', serif; font-size: 28px; color: var(--gold); margin-bottom: 24px; animation: fadeInDown 1s;">🕯️ Latar Cerita Dunia</h2>
+      <p style="line-height: 1.8; font-size: 15px; animation: fadeIn 1.3s;">
+        Di ujung dunia Astravell, para ras kuno mulai terbangun dari tidurnya. Munculnya kekuatan bulan gelap menciptakan ketidakseimbangan yang mengguncang
+        tatanan kerajaan. Caelthar, sang raja bijak, memanggil para petualang dari berbagai ras — baik bangsawan, penyihir, maupun iblis — untuk membentuk
+        tatanan baru atau meruntuhkan yang lama.
+      </p>
+      <p style="margin-top: 20px; font-style: italic; animation: fadeIn 1.6s;">
+        Kamu adalah bagian dari kisah ini. Pilih peranmu. Tulis takdirmu.
+      </p>
+    </div>
+  </section>
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-top">
@@ -123,6 +291,118 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Scripts -->
+  <script>
+    // Toggle Menu
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("active");
+    }
+
+    // Slider Logic
+    let currentIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+    const cards = document.querySelectorAll(".card");
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      cards.forEach((card, i) => {
+        card.classList.toggle("active", i === index);
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    }
+
+    // Auto slider (optional)
+    setInterval(() => {
+      nextSlide();
+    }, 6000);
+    <!-- 🔉 Suara Klik -->
+  <audio id="clickSound" src="https://raw.githubusercontent.com/marcellnw/altherasmp/main/click.mp3" preload="auto"></audio>
+
+  <!-- 🎶 Musik Latar Fantasy -->
+  <audio id="bgm" src="https://raw.githubusercontent.com/marcellnw/altherasmp/main/music%20fantasy%202.mp3" autoplay loop></audio>
+
+  <!-- Partikel Bintang (Dekoratif) -->
+  <canvas id="particleCanvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: -1;"></canvas>
+
+  <!-- Interaksi Suara & Partikel -->
+  <script>
+    // Suara Klik
+    document.querySelectorAll("button, a").forEach(el => {
+      el.addEventListener("click", () => {
+        const click = document.getElementById("clickSound");
+        if (click) click.play();
+      });
+    });
+
+    // Musik BGM auto-play unlock (iOS / Chrome policy)
+    window.addEventListener("click", () => {
+      const bgm = document.getElementById("bgm");
+      if (bgm && bgm.paused) bgm.play();
+    }, { once: true });
+
+    // 🎇 Animasi Partikel Bintang
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    function createParticles() {
+      particles = Array.from({ length: 100 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5 + 0.5,
+        d: Math.random() * 1,
+        alpha: Math.random(),
+        speed: Math.random() * 0.5 + 0.2
+      }));
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255, 215, 0, 0.8)";
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      updateParticles();
+    }
+
+    function updateParticles() {
+      particles.forEach(p => {
+        p.y += p.speed;
+        if (p.y > canvas.height) {
+          p.y = -10;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    function animateParticles() {
+      drawParticles();
+      requestAnimationFrame(animateParticles);
+    }
+
+    createParticles();
+    animateParticles();
+  </script>
 </body>
 </html>
