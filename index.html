@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EternalSMP - Season 14</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,7 +18,7 @@
   <nav id="sidebar" class="sidebar">
     <ul>
       <li><a href="page2.html">Pendaftaran OC</a></li>
-      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd33CH_UBNKC4FrHwIFKMhzR160hNZ0MQ-in7kJdtmK6UQLmQ/viewform" target="_blank">Pendaftaran Server</a></li>
+      <li><a href="#">Pendaftaran Server</a></li>
       <li><a href="#">Cerita dan Sinopsis</a></li>
       <li><a href="#">Dashboard</a></li>
       <li><a href="#">Shop</a></li>
@@ -31,59 +30,64 @@
     <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/20250625_141013.png?raw=true" alt="Logo EternalSMP" class="eternal-logo">
     <h1>🌍 Eternal SMP Season 14</h1>
     <p>Petualangan baru telah dimulai. Pilih ras karaktermu dan bentuk kisahmu sendiri!</p>
+
     <!-- Character Slider -->
     <div class="slider-container">
       <button class="prev" onclick="prevSlide()">❮</button>
       <div class="slides">
-        <img class="slide active" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true" alt="Euria" data-index="0"/>
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png?raw=true" alt="Graveth" data-index="1"/>
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/meredien.png?raw=true" alt="Maredien" data-index="2"/>
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png?raw=true" alt="Heretic" data-index="3"/>
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png?raw=true" alt="Diablonic" data-index="4"/>
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png?raw=true" alt="Laurian" data-index="5"/>
+        <img class="slide active" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true" alt="Euria" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png?raw=true" alt="Graveth" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/meredien.png?raw=true" alt="Meredien" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png?raw=true" alt="Heretic" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png?raw=true" alt="Diablonic" />
+        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png?raw=true" alt="Laurian" />
       </div>
       <button class="next" onclick="nextSlide()">❯</button>
     </div>
 
-    <!-- Character Descriptions (Auto Follow Slide) -->
+    <!-- Character Descriptions -->
     <section class="character-info">
-      <div id="character-description">
+      <div class="card active" data-character="Euria">
         <h2>Euria 🧍‍♂️</h2>
         <p><strong>Ras:</strong> Manusia Murni</p>
         <p>Ras yang memiliki keseimbangan alami dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk pemain yang menginginkan fleksibilitas tinggi dan bisa beradaptasi dengan berbagai peran.</p>
         <p><em>Cocok untuk: Semua class – petarung, penyihir, pemburu</em></p>
       </div>
-    </section>
-    <!-- Slot Karakter OC -->
-    <section class="character-slots">
-      <h2>📦 Slot Karakter OC</h2>
-      <div class="slot-grid">
-        <div class="slot-card">
-          <h3>Slot #1</h3>
-          <p>Terbuka untuk semua pemain yang mendaftar dengan lengkap.</p>
-        </div>
-        <div class="slot-card">
-          <h3>Slot #2</h3>
-          <p>Khusus untuk karakter dengan lore yang kuat & original.</p>
-        </div>
-        <div class="slot-card">
-          <h3>Slot #3</h3>
-          <p>Slot langka hanya dibuka saat event tertentu.</p>
-        </div>
-        <div class="slot-card">
-          <h3>Slot #4</h3>
-          <p>Dibuka melalui undangan admin EternalSMP.</p>
-        </div>
-      </div>
-</section>
 
-    <!-- Lore / Cerita -->
-    <section class="story-section">
-      <h2 class="fantasy-title">✨ Awal Mula Season 14</h2>
-      <p>
-        Di tengah keruntuhan dominasi lama, dunia EternalSMP kembali membangkitkan harapan melalui para ras unik yang terbangun dari tidur panjang. Setiap karakter membawa beban sejarah, tujuan tersembunyi, dan keinginan untuk membentuk takdir baru.
-        Perang lama belum usai, dan setiap keputusan akan membentuk arah dunia. Bergabunglah dalam petualangan ini dan ukir ceritamu.
-      </p>
+      <div class="card" data-character="Graveth">
+        <h2>Graveth 🦅</h2>
+        <p><strong>Ras:</strong> Makhluk Avian</p>
+        <p>Ras dengan tubuh ringan dan gesit, memiliki kemampuan lompat tinggi dan bisa melayang. Efektif dalam mobilitas tinggi di medan tempur.</p>
+        <p><em>Cocok untuk: Assassin, scout, archer</em></p>
+      </div>
+
+      <div class="card" data-character="Maredien">
+        <h2>Maredien 🌿</h2>
+        <p><strong>Ras:</strong> Elf / Dryad</p>
+        <p>Bangsawan yang terikat dengan kekuatan alam. Punya afinitas tinggi terhadap sihir penyembuhan dan elemen alami.</p>
+        <p><em>Cocok untuk: Support, healer, mage, druid</em></p>
+      </div>
+
+      <div class="card" data-character="Heretic">
+        <h2>Heretic 🌓</h2>
+        <p><strong>Ras:</strong> Campuran Manusia & Diablonic</p>
+        <p>Pewaris kekuatan gelap yang unik dan tidak terduga. Tidak sepenuhnya jahat.</p>
+        <p><em>Cocok untuk: Warlock, dark mage, illusionist</em></p>
+      </div>
+
+      <div class="card" data-character="Diablonic">
+        <h2>Diablonic 🔥</h2>
+        <p><strong>Ras:</strong> Iblis Murni</p>
+        <p>Makhluk kuat, tahan banting, dan penuh energi neraka. Sering mendapat stigma dari ras lain.</p>
+        <p><em>Cocok untuk: Berserker, tank, brute</em></p>
+      </div>
+
+      <div class="card" data-character="Laurian">
+        <h2>Laurian ⚪</h2>
+        <p><strong>Ras:</strong> Manusia Umum (Basic)</p>
+        <p>Ras paling sederhana dan lemah. Diberikan kepada pemain yang mengisi formulir asal-asalan.</p>
+        <p><em>Cocok untuk: Pemula, karakter latar belakang biasa</em></p>
+      </div>
     </section>
   </main>
 
@@ -119,7 +123,6 @@
     </div>
   </footer>
 
-  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
