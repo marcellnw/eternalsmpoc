@@ -1,12 +1,52 @@
-// Toggle Sidebar Menu function toggleMenu() { const sidebar = document.getElementById("sidebar"); sidebar.classList.toggle("active"); }
+// === ELEMENT REFERENSI ===
+const slides = document.querySelectorAll(".slide");
+const cards = document.querySelectorAll(".card");
+const sidebar = document.getElementById("sidebar");
 
-// Character Slider let currentSlide = 0; const slides = document.querySelectorAll(".slide"); const cards = document.querySelectorAll(".card");
+let currentSlide = 0;
 
-function showSlide(index) { slides.forEach((slide, i) => { slide.classList.remove("active"); cards[i].classList.remove("active"); if (i === index) { slide.classList.add("active"); cards[i].classList.add("active"); } }); currentSlide = index; }
+// === FUNGSI SLIDER ===
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === index);
+    cards[i].classList.toggle("active", i === index);
+  });
+  currentSlide = index;
+}
 
-function nextSlide() { let nextIndex = (currentSlide + 1) % slides.length; showSlide(nextIndex); }
+function nextSlide() {
+  const next = (currentSlide + 1) % slides.length;
+  showSlide(next);
+  playClick2();
+}
 
-function prevSlide() { let prevIndex = (currentSlide - 1 + slides.length) % slides.length; showSlide(prevIndex); }
+function prevSlide() {
+  const prev = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(prev);
+  playClick2();
+}
 
-// Autoplay Slides (optional) setInterval(() => { nextSlide(); }, 8000);
+// === MENU SIDEBAR ===
+function toggleMenu() {
+  sidebar.classList.toggle("active");
+  document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
+  playClick();
+}
 
+// === SUARA KLIK ===
+const clickSound = new Audio("https://github.com/marcellnw/eternalsmpoc/blob/main/click.m4a?raw=true");
+const clickSound2 = new Audio("https://github.com/marcellnw/eternalsmpoc/blob/main/Click2.m4a?raw=true");
+
+function playClick() {
+  clickSound.currentTime = 0;
+  clickSound.play();
+}
+function playClick2() {
+  clickSound2.currentTime = 0;
+  clickSound2.play();
+}
+
+// === INISIALISASI ===
+document.addEventListener("DOMContentLoaded", () => {
+  showSlide(currentSlide);
+});
