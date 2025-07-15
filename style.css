@@ -1,5 +1,4 @@
-/* === RESET & FANTASY FONT === */
-@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Poppins:wght@400;600&display=swap');
 
 * {
   margin: 0;
@@ -8,44 +7,48 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #1a0e2a, #000);
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(#0c0c0c, #1a1a1a);
   color: #fff;
   overflow-x: hidden;
 }
 
-/* === HEADER === */
+/* === Header === */
 .header {
+  background-color: #111;
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #2d1a46;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid gold;
 }
 
 .logo {
-  font-family: 'Uncial Antiqua', cursive;
-  font-size: 1.8rem;
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.8em;
   color: gold;
 }
 
 .menu-toggle {
-  font-size: 1.6rem;
+  font-size: 1.5em;
   cursor: pointer;
-  color: white;
 }
 
-/* === SIDEBAR === */
+/* === Sidebar Menu === */
 .sidebar {
   position: fixed;
   top: 0;
   right: -250px;
   width: 250px;
-  height: 100%;
-  background: #150d26;
+  height: 100vh;
+  background: #1a1a1a;
+  color: white;
+  padding: 60px 20px;
   transition: right 0.3s ease;
-  padding-top: 80px;
   z-index: 999;
 }
 
@@ -58,151 +61,137 @@ body {
 }
 
 .sidebar ul li {
-  padding: 15px;
-  text-align: center;
+  margin: 16px 0;
 }
 
 .sidebar ul li a {
   color: white;
   text-decoration: none;
-  display: block;
-  font-weight: bold;
+  font-weight: 500;
 }
 
-.sidebar ul li a:hover {
-  color: gold;
-}
-
-/* === HERO SECTION === */
+/* === Hero Section === */
 .hero {
   text-align: center;
-  padding: 2rem;
+  padding: 40px 20px;
 }
 
 .eternal-logo {
-  width: 160px;
-  margin-bottom: 1rem;
+  max-width: 220px;
+  margin-bottom: 20px;
 }
 
-h1 {
-  font-family: 'Uncial Antiqua', cursive;
-  font-size: 2.5rem;
+.hero h1 {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 2.5em;
   color: gold;
 }
 
 .hero p {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: #ccc;
+  font-size: 1.1em;
+  margin-top: 10px;
+  color: #ddd;
 }
 
-/* === SLIDER === */
+/* === Slider === */
 .slider-container {
-  position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 2rem auto 1rem;
-  max-width: 100%;
-  overflow: hidden;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.slider-container button {
+  font-size: 2em;
+  background: none;
+  color: gold;
+  border: none;
+  cursor: pointer;
 }
 
 .slides {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 20px;
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide {
   display: none;
-  max-width: 250px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
 }
 
 .slide.active {
   display: block;
 }
 
-.prev, .next {
-  font-size: 2rem;
-  background: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 0 1rem;
-  user-select: none;
-  transition: transform 0.3s;
-}
-
-.prev:hover, .next:hover {
-  transform: scale(1.2);
-}
-
-/* === CHARACTER INFO === */
+/* === Character Info === */
 .character-info {
+  max-width: 700px;
+  margin: 40px auto;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 1rem auto 2rem;
-  max-width: 800px;
-  padding: 0 1rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 0 20px;
 }
 
 .card {
   display: none;
-  background: #1e102f;
+  background: #222;
   border: 2px solid gold;
-  border-radius: 10px;
-  padding: 1rem;
-  margin: 1rem;
+  padding: 20px;
+  border-radius: 16px;
+  text-align: left;
   width: 100%;
-  max-width: 500px;
-  transition: all 0.3s;
+  box-shadow: 0 0 10px #000;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .card.active {
   display: block;
-  animation: fadeIn 0.8s ease-in-out;
 }
 
 .card h2 {
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1.5em;
+  margin-bottom: 10px;
   color: gold;
-  font-family: 'Uncial Antiqua', cursive;
-  margin-bottom: 0.5rem;
 }
 
 .card p {
-  margin: 0.4rem 0;
-  font-size: 0.95rem;
-  line-height: 1.4;
+  margin-bottom: 8px;
   color: #ccc;
 }
 
-/* === FOOTER === */
+.card em {
+  color: #aaa;
+}
+
+/* === Footer === */
 .footer {
-  background: #1a0e2a;
-  padding: 2rem 1rem;
-  margin-top: 2rem;
+  background-color: #111;
+  padding: 40px 20px;
+  color: #ccc;
 }
 
 .footer-top {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 900px;
-  margin: auto;
-}
-
-.footer-column {
-  flex: 1;
-  min-width: 140px;
-  padding: 0.5rem;
+  justify-content: space-around;
+  margin-bottom: 20px;
 }
 
 .footer-column h4 {
+  font-weight: 600;
+  margin-bottom: 10px;
   color: gold;
-  margin-bottom: 0.8rem;
 }
 
 .footer-column ul {
@@ -210,7 +199,7 @@ h1 {
 }
 
 .footer-column ul li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 6px;
 }
 
 .footer-column ul li a {
@@ -218,45 +207,31 @@ h1 {
   text-decoration: none;
 }
 
-.footer-column ul li a:hover {
-  color: white;
-}
-
 .footer-bottom {
   text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: #888;
+  font-size: 0.9em;
+  border-top: 1px solid #333;
+  padding-top: 10px;
 }
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .character-info {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 90%;
-  }
-
-  .slide {
-    max-width: 180px;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-}
-
-/* === ANIMASI === */
+/* === Animations === */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .slides {
+    width: 240px;
+    height: 240px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .hero h1 {
+    font-size: 2em;
   }
+
+  .character-info {
+    padding: 0 10px;
   }
+}
