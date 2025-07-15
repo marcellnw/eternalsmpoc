@@ -324,11 +324,11 @@
       return false;
     }
     if (lore.length < 300) {
-      alert("Lore minimal 500 kata.");
+      alert("Lore minimal 300 kata.");
       return false;
     }
     if (tujuan.length < 100) {
-      alert("Tujuan minimal 300 kata.");
+      alert("Tujuan minimal 100 kata.");
       return false;
     }
 
@@ -365,21 +365,8 @@
     showPage("previewPage");
   }
 </script>
-<script>
-  // 📨 Kirim ke Discord Webhook
-  async function submitToDiscord() {
-    const form = document.getElementById("ocForm");
-    const data = new FormData(form);
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    if (!validateFormInputs()) return;
-
-    if (!confirm("Apakah kamu yakin ingin mengirim pendaftaran ini?")) return;
-
+    <script>
+      
     const imageFile = data.get("image");
     if (imageFile && imageFile.name && !imageFile.type.startsWith("image/")) {
       alert("File yang diunggah harus berupa gambar.");
