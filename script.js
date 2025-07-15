@@ -1,52 +1,44 @@
-// === ELEMENT REFERENSI ===
-const slides = document.querySelectorAll(".slide");
-const cards = document.querySelectorAll(".card");
-const sidebar = document.getElementById("sidebar");
-
+// 🔄 Slider Karakter
 let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const cards = document.querySelectorAll('.card');
 
-// === FUNGSI SLIDER ===
 function showSlide(index) {
   slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === index);
-    cards[i].classList.toggle("active", i === index);
+    slide.classList.toggle('active', i === index);
   });
-  currentSlide = index;
+  cards.forEach((card, i) => {
+    card.classList.toggle('active', i === index);
+  });
 }
 
 function nextSlide() {
-  const next = (currentSlide + 1) % slides.length;
-  showSlide(next);
-  playClick2();
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
 }
 
 function prevSlide() {
-  const prev = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(prev);
-  playClick2();
-}
-
-// === MENU SIDEBAR ===
-function toggleMenu() {
-  sidebar.classList.toggle("active");
-  document.body.style.overflow = sidebar.classList.contains("active") ? "hidden" : "auto";
-  playClick();
-}
-
-// === SUARA KLIK ===
-const clickSound = new Audio("https://github.com/marcellnw/eternalsmpoc/blob/main/click.m4a?raw=true");
-const clickSound2 = new Audio("https://github.com/marcellnw/eternalsmpoc/blob/main/Click2.m4a?raw=true");
-
-function playClick() {
-  clickSound.currentTime = 0;
-  clickSound.play();
-}
-function playClick2() {
-  clickSound2.currentTime = 0;
-  clickSound2.play();
-}
-
-// === INISIALISASI ===
-document.addEventListener("DOMContentLoaded", () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
   showSlide(currentSlide);
+}
+
+// ⏳ Autoplay Slider (opsional)
+setInterval(nextSlide, 8000);
+
+// ☰ Toggle Menu Sidebar
+function toggleMenu() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+// 🌟 Efek Daun Fantasi Mengambang
+document.addEventListener("DOMContentLoaded", () => {
+  const leafCount = 30;
+  for (let i = 0; i < leafCount; i++) {
+    const leaf = document.createElement("div");
+    leaf.className = "floating-leaf";
+    leaf.style.left = Math.random() * 100 + "vw";
+    leaf.style.animationDelay = Math.random() * 5 + "s";
+    leaf.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(leaf);
+  }
 });
