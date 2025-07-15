@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EternalSMP - Season 14</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <!-- Header -->
   <header class="header">
-    <div class="logo">EternalSMP</div>
+    <div class="logo" style="font-family: 'Cinzel', serif;">EternalSMP</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
   </header>
 
   <!-- Sidebar Menu -->
   <nav id="sidebar" class="sidebar">
     <ul>
-      <li><a href="page2.html">Pendaftaran OC</a></li>
-      <li><a href="#">Pendaftaran Server</a></li>
-      <li><a href="#">Cerita dan Sinopsis</a></li>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Shop</a></li>
+      <li><a href="page2.html" onclick="closeMenu()">Pendaftaran OC</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd33CH_UBNKC4FrHwIFKMhzR160hNZ0MQ-in7kJdtmK6UQLmQ/viewform" target="_blank" onclick="closeMenu()">Pendaftaran Server</a></li>
+      <li><a href="#" onclick="closeMenu()">Cerita dan Sinopsis</a></li>
+      <li><a href="#" onclick="closeMenu()">Dashboard</a></li>
+      <li><a href="#" onclick="closeMenu()">Shop</a></li>
     </ul>
   </nav>
 
@@ -50,43 +50,37 @@
       <div class="card active" data-character="Euria">
         <h2>Euria 🧍‍♂️</h2>
         <p><strong>Ras:</strong> Manusia Murni</p>
-        <p>Ras yang memiliki keseimbangan alami dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk pemain yang menginginkan fleksibilitas tinggi dan bisa beradaptasi dengan berbagai peran.</p>
-        <p><em>Cocok untuk: Semua class – petarung, penyihir, pemburu</em></p>
+        <p>Ras seimbang dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk semua class: petarung, penyihir, pemburu.</p>
       </div>
 
       <div class="card" data-character="Graveth">
         <h2>Graveth 🦅</h2>
         <p><strong>Ras:</strong> Makhluk Avian</p>
-        <p>Ras dengan tubuh ringan dan gesit, memiliki kemampuan lompat tinggi dan bisa melayang. Efektif dalam mobilitas tinggi di medan tempur.</p>
-        <p><em>Cocok untuk: Assassin, scout, archer</em></p>
+        <p>Gesit dan ringan, unggul dalam lompatan dan manuver cepat. Cocok untuk: Assassin, scout, archer.</p>
       </div>
 
       <div class="card" data-character="Maredien">
         <h2>Maredien 🌿</h2>
         <p><strong>Ras:</strong> Elf / Dryad</p>
-        <p>Bangsawan yang terikat dengan kekuatan alam. Punya afinitas tinggi terhadap sihir penyembuhan dan elemen alami.</p>
-        <p><em>Cocok untuk: Support, healer, mage, druid</em></p>
+        <p>Pengendali elemen alam, kuat dalam sihir penyembuhan. Cocok untuk: Support, healer, druid.</p>
       </div>
 
       <div class="card" data-character="Heretic">
         <h2>Heretic 🌓</h2>
-        <p><strong>Ras:</strong> Campuran Manusia & Diablonic</p>
-        <p>Pewaris kekuatan gelap yang unik dan tidak terduga. Tidak sepenuhnya jahat.</p>
-        <p><em>Cocok untuk: Warlock, dark mage, illusionist</em></p>
+        <p><strong>Ras:</strong> Manusia & Diablonic</p>
+        <p>Keturunan gelap dengan kekuatan misterius. Cocok untuk: Warlock, illusionist.</p>
       </div>
 
       <div class="card" data-character="Diablonic">
         <h2>Diablonic 🔥</h2>
         <p><strong>Ras:</strong> Iblis Murni</p>
-        <p>Makhluk kuat, tahan banting, dan penuh energi neraka. Sering mendapat stigma dari ras lain.</p>
-        <p><em>Cocok untuk: Berserker, tank, brute</em></p>
+        <p>Kuat dan brutal. Cocok untuk: Tank, berserker.</p>
       </div>
 
       <div class="card" data-character="Laurian">
         <h2>Laurian ⚪</h2>
-        <p><strong>Ras:</strong> Manusia Umum (Basic)</p>
-        <p>Ras paling sederhana dan lemah. Diberikan kepada pemain yang mengisi formulir asal-asalan.</p>
-        <p><em>Cocok untuk: Pemula, karakter latar belakang biasa</em></p>
+        <p><strong>Ras:</strong> Manusia Biasa</p>
+        <p>Ras default untuk karakter latar belakang dasar. Cocok untuk pemula.</p>
       </div>
     </section>
   </main>
