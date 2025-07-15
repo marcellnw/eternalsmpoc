@@ -1,8 +1,9 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EternalSMP</title>
+  <title>Pendaftaran Karakter OC - EternalSMP</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,9 +93,6 @@
       min-height: 100px;
       resize: vertical;
     }
-    .form-group-wide {
-      margin-top: 24px;
-    }
     .btn-group {
       text-align: center;
       margin-top: 24px;
@@ -129,455 +127,275 @@
       color: var(--gold);
       font-size: 18px;
     }
-    @media (max-width: 768px) {
-      .form-columns {
-        flex-direction: column;
-      }
-      .form-left, .form-right {
-        gap: 12px;
-      }
-      button.btn {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-    .fade-in-up {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.glow-btn {
-  background-color: gold;
-  color: black;
-  border: none;
-  padding: 10px 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 0px rgba(255, 215, 0, 0.6);
-}
-.glow-btn:hover {
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.8), 0 0 24px rgba(255, 215, 0, 0.4);
-  transform: scale(1.05);
-  cursor: pointer;
-      }
   </style>
 </head>
-<body>
-  <!-- 🔊 Sound -->
-  <audio id="clickSound" src="https://raw.githubusercontent.com/marcellnw/eternalsmp-pendaftaran-oc/main/click.m4a"></audio>
-  <audio id="Click2Sound" src="https://raw.githubusercontent.com/marcellnw/eternalsmp-pendaftaran-oc/main/Click2.m4a"></audio>  <header>
-    <div class="logo">EternalSMP</div>
-    <button class="back-btn" onclick="playClick2(); window.location.href='index.html';">Kembali</button>
-  </header>  <div class="container">
-    <h2>Pendaftaran Karakter OC</h2>
-    <form id="ocForm">
-
-      <!-- Halaman Formulir Pendaftaran -->
-<div class="container active" id="formPage">
-  <h2 style="text-align: center; color: #ffd700; font-family: 'Cinzel', serif; margin-bottom: 1.5rem;">📝 Pendaftaran Karakter OC</h2>
-
-  <form id="ocForm">
-    <div class="form-columns">
-      <!-- Kolom Kiri -->
-      <div class="form-left">
-        <label for="gamertag">🎮 Nama Gamertag
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Nama Minecraft kamu di server EternalSMP. Hanya huruf, angka, dan underscore.</small>
-        </label>
-        <input type="text" id="gamertag" name="gamertag" required>
-
-        <label for="ocname">👤 Nama Karakter OC
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Nama asli karakter OC kamu. Minimal 3 huruf, gunakan huruf dan spasi saja.</small>
-        </label>
-        <input type="text" id="ocname" name="ocname" required>
-
-        <label for="race">🧬 Ras Karakter
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Pilih ras sesuai lore dunia EternalSMP.</small>
-        </label>
-        <select id="race" name="race" required>
-          <option value="">-- Pilih --</option>
-          <option value="Euria">Euria - Peri cahaya, penjaga alam</option>
-          <option value="Graveth">Graveth - Ras kuat ahli sihir gelap</option>
-          <option value="Maredien">Maredien - Bangsawan diplomatis</option>
-          <option value="Heretic">Heretic - Pemilik sihir terlarang</option>
-          <option value="Diablonic">Diablonic - Iblis haus kuasa</option>
-          <option value="Laurian">Laurian - Pemburu & pelindung hutan</option>
-        </select>
-
-        <label for="class">⚔️ Class Tempur
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Tentukan gaya bertarung utama karaktermu.</small>
-        </label>
-        <select id="class" name="class" required>
-          <option value="">-- Pilih --</option>
-          <option>Warrior - Petarung seimbang</option>
-          <option>Berserker - Liar & brutal</option>
-          <option>Tank - Pertahanan tinggi</option>
-          <option>Lancer - Cepat & menusuk</option>
-          <option>Rogue - Licik & lincah</option>
-          <option>Hunter - Jarak jauh</option>
-          <option>Ronin - Pendekar bebas</option>
-          <option>Swordmage - Pedang & sihir</option>
-          <option>Priest - Penyembuh</option>
-        </select>
-      </div>
-
-      <!-- Kolom Kanan -->
-      <div class="form-right">
-        <label for="job">🔨 Job / Profesi
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Profesi utama karakter dalam dunia roleplay.</small>
-        </label>
-        <select id="job" name="job" required>
-          <option value="">-- Pilih --</option>
-          <option>Alchemist - Pembuat ramuan</option>
-          <option>Blacksmith - Pandai besi</option>
-          <option>Trader - Ahli jual beli</option>
-          <option>Farmer - Petani</option>
-          <option>Nitwit - Awal tanpa keahlian</option>
-        </select>
-
-        <label for="role">👑 Role Sosial
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Kedudukan karakter dalam sistem sosial dunia.</small>
-        </label>
-        <select id="role" name="role" required>
-          <option value="">-- Pilih --</option>
-          <option>Raja - Pemimpin utama</option>
-          <option>Bangsawan - Tokoh berpengaruh</option>
-          <option>Royalis - Pendukung kerajaan</option>
-          <option>Worker - Rakyat biasa</option>
-        </select>
-
-        <label for="image">🖼️ Upload Gambar Karakter (Opsional)
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Unggah gambar OC-mu dalam format JPG atau PNG.</small>
-        </label>
-        <input type="file" id="image" name="image" accept="image/*">
-
-        <label for="sifat">🎭 Sifat & Kepribadian
-          <small style="display:block; font-size: 0.8rem; color: #aaa;">Ceritakan kepribadian, karakter, atau kelemahan OC. Minimal 50 kata.</small>
-        </label>
-        <textarea id="sifat" name="sifat" minlength="50" required></textarea>
-      </div>
-    </div>
-
-    <!-- Lore & Tujuan -->
-    <label for="lore">📖 Lore & Background Karakter
-      <small style="display:block; font-size: 0.8rem; color: #aaa;">Tuliskan kisah masa lalu karakter. Minimal 500 kata, maksimal 3000.</small>
-    </label>
-    <textarea id="lore" name="lore" minlength="500" maxlength="3000" required></textarea>
-
-    <label for="tujuan">🎯 Tujuan & Motivasi Karakter
-      <small style="display:block; font-size: 0.8rem; color: #aaa;">Apa tujuan karakter di dunia EternalSMP? Minimal 100 kata, maksimal 500.</small>
-    </label>
-    <textarea id="tujuan" name="tujuan" minlength="100" maxlength="500" required></textarea>
-
-    <!-- Tombol Aksi -->
-    <div style="text-align:center; margin-top: 1.5rem;">
-      <button type="button" class="btn" onclick="playClick(); showPreview()" style="max-width: 280px;">👁️ Preview</button>
-      <button type="submit" class="btn" onclick="playClick();" style="max-width: 280px;">📨 Kirim Pendaftaran</button>
-    </div>
-  </form>
-</div>
-
-<!-- Tombol kembali ke Page 1 di pojok kanan atas -->
-<button onclick="playClick2(); window.location.href='index.html';" 
-        style="position: fixed; top: 12px; right: 12px; background: #000; border: 1px solid #ffd700; color: #ffd700; padding: 6px 12px; border-radius: 8px; font-size: 0.9rem; z-index: 999;">
-  ← Kembali
-</button>
-
-<!-- Preview Page (Halaman terpisah) -->
-<div class="container hidden" id="previewPage">
-  <h2 style="text-align: center; color: #ffd700; font-family: 'Cinzel', serif;">👁️ Preview Karakter OC</h2>
-  <pre id="previewContent" style="white-space: pre-wrap; background: #111; border: 1px solid #ffd700; color: #eee; padding: 16px; border-radius: 8px; max-height: 500px; overflow-y: auto;"></pre>
-  <div style="text-align: center; margin-top: 1.5rem;">
-    <button class="btn" onclick="playClick2(); backToForm()" style="max-width: 260px;">🔙 Kembali ke Formulir</button>
-    <button class="btn" onclick="playClick(); submitToDiscord()" style="max-width: 260px;">✅ Kirim Pendaftaran</button>
-  </div>
-</div>
-
-      <!-- Footer -->
-<footer style="margin-top: 3rem; background-color: #000; padding: 20px 0; border-top: 1px solid #ffd700; text-align: center; color: #ffd700;">
-  <p>&copy; 2025 Eternal SMP. All rights reserved.</p>
-  <ul class="social" style="list-style: none; display: flex; justify-content: center; gap: 20px; padding: 0; margin-top: 10px;">
-    <li><a href="https://instagram.com/eternalsmp" target="_blank"><i class="fab fa-instagram" style="color:#e4405f;"></i></a></li>
-    <li><a href="https://youtube.com/@eternalsmpserver" target="_blank"><i class="fab fa-youtube" style="color:#ff0000;"></i></a></li>
-    <li><a href="https://www.tiktok.com/@eternalsmpserver" target="_blank"><i class="fab fa-tiktok" style="color:#fff;"></i></a></li>
-  </ul>
-</footer>
-
 <body>
   <!-- 🔈 Suara Klik -->
   <audio id="clickSound" src="click.mp3" preload="auto"></audio>
   <audio id="Click2Sound" src="click2.mp3" preload="auto"></audio>
 
-  <!-- 🧾 Form Karakter OC -->
-  <div id="formPage" class="container fade-in-up">
-    <h1>Pendaftaran Karakter EternalSMP</h1>
+  <header>
+    <div class="logo">EternalSMP</div>
+    <button class="back-btn" onclick="playClick2(); window.location.href='index.html';">Kembali</button>
+  </header>
+
+  <div class="container">
+    <h2>📝 Pendaftaran Karakter OC</h2>
     <form id="ocForm">
-      <label>Gamertag</label>
-      <input id="gamertag" name="gamertag" required pattern="\w{3,16}" />
+      <div class="form-columns">
+        <div class="form-left">
+          <label for="gamertag">🎮 Nama Gamertag</label>
+          <input type="text" id="gamertag" name="gamertag" required pattern="\w{3,16}">
 
-      <label>Nama Karakter OC</label>
-      <input id="ocname" name="ocname" required pattern="[A-Za-z\s]{3,}" />
+          <label for="ocname">👤 Nama Karakter OC</label>
+          <input type="text" id="ocname" name="ocname" required pattern="[A-Za-z\s]{3,}">
 
-      <label>Ras</label>
-      <input id="race" name="race" required />
+          <label for="race">🧬 Ras Karakter</label>
+          <select id="race" name="race" required>
+            <option value="">-- Pilih --</option>
+            <option value="Euria">Euria - Peri cahaya</option>
+            <option value="Graveth">Graveth - Ahli sihir gelap</option>
+            <option value="Maredien">Maredien - Bangsawan diplomatis</option>
+            <option value="Heretic">Heretic - Pengguna sihir terlarang</option>
+            <option value="Diablonic">Diablonic - Iblis kuat</option>
+            <option value="Laurian">Laurian - Pelindung hutan</option>
+          </select>
 
-      <label>Class</label>
-      <input id="class" name="class" required />
+          <label for="class">⚔️ Class Tempur</label>
+          <select id="class" name="class" required>
+            <option value="">-- Pilih --</option>
+            <option>Warrior - Petarung seimbang</option>
+            <option>Berserker - Liar & brutal</option>
+            <option>Tank - Pertahanan tinggi</option>
+            <option>Lancer - Cepat & menusuk</option>
+            <option>Rogue - Licik & lincah</option>
+            <option>Hunter - Jarak jauh</option>
+            <option>Ronin - Pendekar bebas</option>
+            <option>Swordmage - Pedang & sihir</option>
+            <option>Priest - Penyembuh</option>
+          </select>
+        </div>
 
-      <label>Job</label>
-      <input id="job" name="job" required />
+        <div class="form-right">
+          <label for="job">🔨 Job / Profesi</label>
+          <select id="job" name="job" required>
+            <option value="">-- Pilih --</option>
+            <option>Alchemist - Pembuat ramuan</option>
+            <option>Blacksmith - Pandai besi</option>
+            <option>Trader - Ahli jual beli</option>
+            <option>Farmer - Petani</option>
+            <option>Nitwit - Awal tanpa keahlian</option>
+          </select>
 
-      <label>Role</label>
-      <input id="role" name="role" required />
+          <label for="role">👑 Role Sosial</label>
+          <select id="role" name="role" required>
+            <option value="">-- Pilih --</option>
+            <option>Raja - Pemimpin utama</option>
+            <option>Bangsawan - Tokoh berpengaruh</option>
+            <option>Royalis - Pendukung kerajaan</option>
+            <option>Worker - Rakyat biasa</option>
+          </select>
 
-      <label>Sifat & Kepribadian</label>
-      <textarea id="sifat" name="sifat" required></textarea>
+          <label for="image">🖼️ Upload Gambar (opsional)</label>
+          <input type="file" id="image" name="image" accept="image/*">
 
-      <label>Lore & Background</label>
-      <textarea id="lore" name="lore" required></textarea>
+          <label for="sifat">🎭 Sifat & Kepribadian</label>
+          <textarea id="sifat" name="sifat" minlength="50" required></textarea>
+        </div>
+      </div>
+      <!-- Lore & Tujuan -->
+      <label for="lore">📖 Lore & Background Karakter</label>
+      <textarea id="lore" name="lore" minlength="500" maxlength="3000" required></textarea>
 
-      <label>Tujuan & Motivasi</label>
-      <textarea id="tujuan" name="tujuan" required></textarea>
+      <label for="tujuan">🎯 Tujuan & Motivasi Karakter</label>
+      <textarea id="tujuan" name="tujuan" minlength="100" maxlength="500" required></textarea>
 
-      <label>Gambar (opsional)</label>
-      <input type="file" id="image" name="image" accept="image/*" />
-
-      <div style="margin-top: 16px;">
-        <button type="button" onclick="playClick(); showPreview();" class="glow-btn">👁️ Preview</button>
-        <button type="button" onclick="playClick2(); submitToDiscord();" class="glow-btn">🚀 Kirim ke Discord</button>
+      <!-- Tombol Aksi -->
+      <div class="btn-group">
+        <button type="button" class="btn glow-btn" onclick="playClick(); submitToDiscord()">📨 Kirim Pendaftaran</button>
       </div>
     </form>
   </div>
 
-  <!-- 🔍 Preview Halaman -->
-  <div id="previewPage" class="container hidden fade-in-up">
-    <h2>📜 Preview Karakter</h2>
-    <pre id="previewContent"></pre>
-    <!-- Tombol kembali dihapus sesuai permintaan -->
-  </div>
-  
-    <script>
-  // 🔊 Suara klik
-  function playClick() {
-    document.getElementById("clickSound")?.play();
-  }
-  function playClick2() {
-    document.getElementById("Click2Sound")?.play();
-  }
-
-  // 🔁 Navigasi antar halaman
-  function showPage(id) {
-    document.querySelectorAll(".container").forEach(div => div.classList.add("hidden"));
-    const target = document.getElementById(id);
-    target.classList.remove("hidden");
-    target.classList.remove("fade-in-up");
-    void target.offsetWidth;
-    target.classList.add("fade-in-up");
-  }
-
-  // 🔐 Validasi input manual
-  function validateFormInputs() {
-    const gamertag = document.querySelector("#gamertag").value.trim();
-    const ocname = document.querySelector("#ocname").value.trim();
-    const sifat = document.querySelector("#sifat").value.trim();
-    const lore = document.querySelector("#lore").value.trim();
-    const tujuan = document.querySelector("#tujuan").value.trim();
-
-    if (!/^[\w]{3,16}$/.test(gamertag)) {
-      alert("Gamertag hanya boleh huruf, angka, dan garis bawah, 3-16 karakter.");
-      return false;
-    }
-    if (!/^[a-zA-Z\s]{3,}$/.test(ocname)) {
-      alert("Nama karakter OC minimal 3 huruf dan hanya huruf/spasi.");
-      return false;
-    }
-    if (sifat.split(/\s+/).length < 50) {
-      alert("Sifat & Kepribadian minimal 50 kata.");
-      return false;
-    }
-    if (lore.split(/\s+/).length < 300) {
-      alert("Lore minimal 300 kata.");
-      return false;
-    }
-    if (tujuan.split(/\s+/).length < 100) {
-      alert("Tujuan minimal 100 kata.");
-      return false;
-    }
-
-    return true;
-  }
-
-  // 👁️ Tampilkan Preview
-  function showPreview() {
-    const form = document.getElementById("ocForm");
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-    if (!validateFormInputs()) return;
-
-    const data = new FormData(form);
-    const previewText = Array.from(data.entries()).map(([key, value]) => {
-      if (key === "image") return "";
-      const label = {
-        gamertag: "🎮 Gamertag",
-        ocname: "👤 Nama Karakter",
-        race: "🧬 Ras",
-        class: "⚔️ Class",
-        job: "🔨 Job",
-        role: "👑 Role",
-        sifat: "🎭 Sifat & Kepribadian",
-        lore: "📖 Lore",
-        tujuan: "🎯 Tujuan & Motivasi"
-      }[key] || key;
-      return `${label}:\n${value.trim()}\n`;
-    }).join("\n");
-
-    const previewContainer = document.getElementById("previewContent");
-    previewContainer.innerText = previewText;
-
-    showPage("previewPage");
-  }
-</script>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Eternal SMP. All rights reserved.</p>
+    <ul class="social">
+      <li><a href="https://instagram.com/eternalsmp" target="_blank"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="https://youtube.com/@eternalsmpserver" target="_blank"><i class="fab fa-youtube"></i></a></li>
+      <li><a href="https://www.tiktok.com/@eternalsmpserver" target="_blank"><i class="fab fa-tiktok"></i></a></li>
+    </ul>
+  </footer>
+  <!-- Script -->
   <script>
-  function submitToDiscord() {
-    const form = document.getElementById("ocForm");
-    const data = new FormData(form);
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
+    // 🔊 Suara klik
+    function playClick() {
+      document.getElementById("clickSound")?.play();
     }
-    if (!validateFormInputs()) return;
-    if (!confirm("Apakah kamu yakin ingin mengirim pendaftaran ini?")) return;
-
-    const imageFile = data.get("image");
-    if (imageFile && imageFile.name && !imageFile.type.startsWith("image/")) {
-      alert("File yang diunggah harus berupa gambar.");
-      return;
+    function playClick2() {
+      document.getElementById("Click2Sound")?.play();
     }
 
-    const webhook = "https://discord.com/api/webhooks/1389899055672594494/ap4v8BlHwvs8JL8RXmisbPcZDsBZBCImJfkQdawlXPKAN8Uw8rWKPLSnL7P5WOf5vDm5";
+    // 🔐 Validasi input tambahan
+    function validateFormInputs() {
+      const gamertag = document.querySelector("#gamertag").value.trim();
+      const ocname = document.querySelector("#ocname").value.trim();
+      const sifat = document.querySelector("#sifat").value.trim();
+      const lore = document.querySelector("#lore").value.trim();
+      const tujuan = document.querySelector("#tujuan").value.trim();
 
-    // 🎯 Pisahkan menjadi embed-info, embed-lore, embed-tujuan
-    const infoFields = [];
-    let loreChunks = [], tujuanChunks = [];
-
-    for (let [key, value] of data.entries()) {
-      if (key === "image") continue;
-      const text = value.trim();
-      const chunks = text.match(/.{1,1024}/gs) || [];
-      const emoji = {
-        gamertag: "🎮", ocname: "👤", race: "🧬", class: "⚔️",
-        job: "🔨", role: "👑", sifat: "🎭", lore: "📖", tujuan: "🎯"
-      }[key] || "";
-
-      const label = {
-        gamertag: "Nama Gamertag", ocname: "Nama Karakter",
-        race: "Ras", class: "Class", job: "Job", role: "Role Sosial",
-        sifat: "Sifat & Kepribadian", lore: "Lore & Background", tujuan: "Tujuan & Motivasi"
-      }[key] || key;
-
-      const mappedChunks = chunks.map((chunk, i) => ({
-        name: `${emoji} ${label}${chunks.length > 1 ? ` (${i + 1})` : ""}`,
-        value: chunk,
-        inline: false
-      }));
-
-      if (key === "lore") loreChunks = mappedChunks;
-      else if (key === "tujuan") tujuanChunks = mappedChunks;
-      else infoFields.push(mappedChunks[0]); // pakai hanya 1 field (karena pendek)
-    }
-
-    // 📦 Buat 3 embed terpisah
-    const embeds = [
-      {
-        title: "🗡️ Pendaftaran Karakter Baru",
-        description: "Berikut adalah karakter OC yang baru terdaftar:",
-        color: 0xFFD700,
-        fields: infoFields
-      },
-      {
-        title: "📖 Lore & Background",
-        color: 0x5865F2,
-        fields: loreChunks
-      },
-      {
-        title: "🎯 Tujuan & Motivasi",
-        color: 0x57F287,
-        fields: tujuanChunks
+      if (!/^[\w]{3,16}$/.test(gamertag)) {
+        alert("Gamertag hanya boleh huruf, angka, dan garis bawah, 3-16 karakter.");
+        return false;
       }
-    ];
+      if (!/^[a-zA-Z\s]{3,}$/.test(ocname)) {
+        alert("Nama karakter OC minimal 3 huruf dan hanya huruf/spasi.");
+        return false;
+      }
+      if (sifat.split(/\s+/).length < 50) {
+        alert("Sifat & Kepribadian minimal 50 kata.");
+        return false;
+      }
+      if (lore.split(/\s+/).length < 300) {
+        alert("Lore minimal 300 kata.");
+        return false;
+      }
+      if (tujuan.split(/\s+/).length < 100) {
+        alert("Tujuan minimal 100 kata.");
+        return false;
+      }
 
-    try {
-      let response;
+      return true;
+    }
 
-      if (imageFile && imageFile.name) {
-        const buffer = await imageFile.arrayBuffer();
-        const blob = new Blob([buffer], { type: imageFile.type });
+    async function submitToDiscord() {
+      const form = document.getElementById("ocForm");
+      const data = new FormData(form);
 
-        const formData = new FormData();
-        formData.append("file", blob, imageFile.name);
-        formData.append("payload_json", JSON.stringify({
-          username: "EternalSMP OC Register",
-          embeds: [
-            { ...embeds[0], image: { url: "attachment://" + imageFile.name } },
-            embeds[1],
-            embeds[2]
-          ]
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      if (!validateFormInputs()) return;
+      if (!confirm("Apakah kamu yakin ingin mengirim pendaftaran ini?")) return;
+
+      const imageFile = data.get("image");
+      if (imageFile && imageFile.name && !imageFile.type.startsWith("image/")) {
+        alert("File yang diunggah harus berupa gambar.");
+        return;
+      }
+
+      const webhook = "https://discord.com/api/webhooks/1389899055672594494/ap4v8BlHwvs8JL8RXmisbPcZDsBZBCImJfkQdawlXPKAN8Uw8rWKPLSnL7P5WOf5vDm5";
+
+    const infoFields = [];
+      let loreChunks = [], tujuanChunks = [];
+
+      for (let [key, value] of data.entries()) {
+        if (key === "image") continue;
+        const text = value.trim();
+        const chunks = text.match(/.{1,1024}/gs) || [];
+        const emoji = {
+          gamertag: "🎮", ocname: "👤", race: "🧬", class: "⚔️",
+          job: "🔨", role: "👑", sifat: "🎭", lore: "📖", tujuan: "🎯"
+        }[key] || "";
+
+        const label = {
+          gamertag: "Nama Gamertag", ocname: "Nama Karakter",
+          race: "Ras", class: "Class", job: "Job", role: "Role Sosial",
+          sifat: "Sifat & Kepribadian", lore: "Lore & Background", tujuan: "Tujuan & Motivasi"
+        }[key] || key;
+
+        const mappedChunks = chunks.map((chunk, i) => ({
+          name: `${emoji} ${label}${chunks.length > 1 ? ` (${i + 1})` : ""}`,
+          value: chunk,
+          inline: false
         }));
 
-        response = await fetch(webhook, {
-          method: "POST",
-          body: formData
-        });
-      } else {
-        response = await fetch(webhook, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
+        if (key === "lore") loreChunks = mappedChunks;
+        else if (key === "tujuan") tujuanChunks = mappedChunks;
+        else infoFields.push(mappedChunks[0]);
+      }
+
+      const embeds = [
+        {
+          title: "🗡️ Pendaftaran Karakter Baru",
+          description: "Berikut adalah karakter OC yang baru terdaftar:",
+          color: 0xFFD700,
+          fields: infoFields
+        },
+        {
+          title: "📖 Lore & Background",
+          color: 0x5865F2,
+          fields: loreChunks
+        },
+        {
+          title: "🎯 Tujuan & Motivasi",
+          color: 0x57F287,
+          fields: tujuanChunks
+        }
+      ];
+
+      try {
+        let response;
+
+        if (imageFile && imageFile.name) {
+          const buffer = await imageFile.arrayBuffer();
+          const blob = new Blob([buffer], { type: imageFile.type });
+
+          const formData = new FormData();
+          formData.append("file", blob, imageFile.name);
+          formData.append("payload_json", JSON.stringify({
             username: "EternalSMP OC Register",
-            embeds: embeds
-          })
-        });
+            embeds: [
+              { ...embeds[0], image: { url: "attachment://" + imageFile.name } },
+              embeds[1],
+              embeds[2]
+            ]
+          }));
+
+          response = await fetch(webhook, {
+            method: "POST",
+            body: formData
+          });
+        } else {
+          response = await fetch(webhook, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: "EternalSMP OC Register",
+              embeds: embeds
+            })
+          });
+        }
+
+        if (!response.ok) {
+          throw new Error("Gagal mengirim ke Discord: " + (await response.text()));
+        }
+
+        // 💾 Simpan ke localStorage
+        const ocEntry = {
+          gamertag: data.get("gamertag"),
+          ocname: data.get("ocname"),
+          race: data.get("race"),
+          class: data.get("class"),
+          job: data.get("job"),
+          role: data.get("role"),
+          sifat: data.get("sifat"),
+          lore: data.get("lore"),
+          tujuan: data.get("tujuan")
+        };
+        const saved = JSON.parse(localStorage.getItem("pendaftarOCList") || "[]");
+        saved.push(ocEntry);
+        localStorage.setItem("pendaftarOCList", JSON.stringify(saved));
+
+        alert("✅ Pendaftaran berhasil dikirim!");
+        form.reset();
+        window.scrollTo(0, 0);
+      } catch (err) {
+        alert("❌ Gagal mengirim ke Discord. Silakan cek koneksi atau webhook.");
+        console.error(err);
       }
-
-      if (!response.ok) {
-        throw new Error("Gagal mengirim ke Discord: " + (await response.text()));
-      }
-
-      // 💾 Simpan lokal
-      const ocEntry = {
-        gamertag: data.get("gamertag"),
-        ocname: data.get("ocname"),
-        race: data.get("race"),
-        class: data.get("class"),
-        job: data.get("job"),
-        role: data.get("role"),
-        sifat: data.get("sifat"),
-        lore: data.get("lore"),
-        tujuan: data.get("tujuan")
-      };
-      const saved = JSON.parse(localStorage.getItem("pendaftarOCList") || "[]");
-      saved.push(ocEntry);
-      localStorage.setItem("pendaftarOCList", JSON.stringify(saved));
-
-      alert("✅ Pendaftaran berhasil dikirim!");
-      form.reset();
-      showPage("formPage");
-
-    } catch (err) {
-      alert("❌ Gagal mengirim ke Discord. Cek koneksi atau webhook.");
-      console.error(err);
     }
-  }
-</script>
+  </script>
 </body>
 </html>
