@@ -1,44 +1,47 @@
-// 🔄 Slider Karakter
+// Toggle Sidebar Menu
+function toggleMenu() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("active");
+}
+
+// Slider Functionality
 let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const cards = document.querySelectorAll('.card');
 
 function showSlide(index) {
+  const slides = document.querySelectorAll(".slide");
+  const cards = document.querySelectorAll(".character-info .card");
+
+  if (index >= slides.length) currentSlide = 0;
+  else if (index < 0) currentSlide = slides.length - 1;
+  else currentSlide = index;
+
   slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
+    slide.classList.toggle("active", i === currentSlide);
   });
+
   cards.forEach((card, i) => {
-    card.classList.toggle('active', i === index);
+    card.classList.toggle("active", i === currentSlide);
   });
 }
 
 function nextSlide() {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
+  showSlide(currentSlide + 1);
 }
 
 function prevSlide() {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
+  showSlide(currentSlide - 1);
 }
 
-// ⏳ Autoplay Slider (opsional)
-setInterval(nextSlide, 8000);
-
-// ☰ Toggle Menu Sidebar
-function toggleMenu() {
-  document.getElementById("sidebar").classList.toggle("active");
-}
-
-// 🌟 Efek Daun Fantasi Mengambang
+// Inisialisasi awal
 document.addEventListener("DOMContentLoaded", () => {
-  const leafCount = 30;
-  for (let i = 0; i < leafCount; i++) {
-    const leaf = document.createElement("div");
-    leaf.className = "floating-leaf";
-    leaf.style.left = Math.random() * 100 + "vw";
-    leaf.style.animationDelay = Math.random() * 5 + "s";
-    leaf.style.animationDuration = 5 + Math.random() * 5 + "s";
-    document.body.appendChild(leaf);
-  }
+  showSlide(0);
+
+  // Animasi masuk untuk logo dan teks hero
+  const logo = document.querySelector(".eternal-logo");
+  const heroText = document.querySelector(".hero h1");
+  const heroDesc = document.querySelector(".hero p");
+
+  logo.classList.add("animate-in");
+  heroText.classList.add("fade-slide-up");
+  heroDesc.classList.add("fade-slide-up");
 });
