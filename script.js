@@ -1,47 +1,12 @@
-// Toggle Sidebar Menu
-function toggleMenu() {
-  const sidebar = document.getElementById("sidebar");
-  sidebar.classList.toggle("active");
-}
+// Toggle Sidebar Menu function toggleMenu() { const sidebar = document.getElementById("sidebar"); sidebar.classList.toggle("active"); }
 
-// Slider Functionality
-let currentSlide = 0;
+// Character Slider let currentSlide = 0; const slides = document.querySelectorAll(".slide"); const cards = document.querySelectorAll(".card");
 
-function showSlide(index) {
-  const slides = document.querySelectorAll(".slide");
-  const cards = document.querySelectorAll(".character-info .card");
+function showSlide(index) { slides.forEach((slide, i) => { slide.classList.remove("active"); cards[i].classList.remove("active"); if (i === index) { slide.classList.add("active"); cards[i].classList.add("active"); } }); currentSlide = index; }
 
-  if (index >= slides.length) currentSlide = 0;
-  else if (index < 0) currentSlide = slides.length - 1;
-  else currentSlide = index;
+function nextSlide() { let nextIndex = (currentSlide + 1) % slides.length; showSlide(nextIndex); }
 
-  slides.forEach((slide, i) => {
-    slide.classList.toggle("active", i === currentSlide);
-  });
+function prevSlide() { let prevIndex = (currentSlide - 1 + slides.length) % slides.length; showSlide(prevIndex); }
 
-  cards.forEach((card, i) => {
-    card.classList.toggle("active", i === currentSlide);
-  });
-}
+// Autoplay Slides (optional) setInterval(() => { nextSlide(); }, 8000);
 
-function nextSlide() {
-  showSlide(currentSlide + 1);
-}
-
-function prevSlide() {
-  showSlide(currentSlide - 1);
-}
-
-// Inisialisasi awal
-document.addEventListener("DOMContentLoaded", () => {
-  showSlide(0);
-
-  // Animasi masuk untuk logo dan teks hero
-  const logo = document.querySelector(".eternal-logo");
-  const heroText = document.querySelector(".hero h1");
-  const heroDesc = document.querySelector(".hero p");
-
-  logo.classList.add("animate-in");
-  heroText.classList.add("fade-slide-up");
-  heroDesc.classList.add("fade-slide-up");
-});
