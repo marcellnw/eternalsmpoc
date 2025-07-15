@@ -1,223 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EternalSMP - Season 14</title>
-
-  <!-- Font Fantasy -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
-    }
-
-    .logo, h1, h2, .footer-column h4 {
-      font-family: 'Cinzel', serif;
-    }
-
-    .header {
-      background: #111;
-      padding: 16px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid gold;
-    }
-
-    .logo {
-      font-size: 28px;
-      color: gold;
-    }
-
-    .menu-toggle {
-      font-size: 24px;
-      cursor: pointer;
-      color: gold;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 240px;
-      height: 100%;
-      background: #111;
-      padding: 60px 20px;
-      box-shadow: -4px 0 10px rgba(0,0,0,0.7);
-      transition: right 0.4s ease;
-      z-index: 100;
-    }
-
-    .sidebar.active {
-      right: 0;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .sidebar ul li {
-      margin: 16px 0;
-    }
-
-    .sidebar ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .sidebar ul li a:hover {
-      color: gold;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .eternal-logo {
-      width: 120px;
-      margin-bottom: 16px;
-      animation: zoomIn 1.5s ease-out;
-    }
-
-    h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-      color: gold;
-    }
-
-    p {
-      font-size: 16px;
-      color: #ccc;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.7); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .slider-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 40px 0;
-      gap: 16px;
-    }
-
-    .slide {
-      display: none;
-      max-height: 240px;
-      border-radius: 12px;
-      transition: transform 0.4s ease, opacity 0.4s;
-    }
-
-    .slide.active {
-      display: block;
-      transform: scale(1.05);
-    }
-
-    .prev, .next {
-      background: gold;
-      color: #000;
-      border: none;
-      padding: 10px 16px;
-      font-size: 20px;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-
-    .character-info {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      padding: 40px 20px;
-      animation: fadeIn 2s ease;
-    }
-
-    .card {
-      background: #1a1a1a;
-      border: 1px solid gold;
-      border-radius: 12px;
-      padding: 20px;
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    .footer {
-      background: #111;
-      padding: 40px 20px;
-      color: #aaa;
-      border-top: 2px solid gold;
-    }
-
-    .footer-top {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 24px;
-    }
-
-    .footer-column h4 {
-      color: gold;
-      margin-bottom: 12px;
-    }
-
-    .footer-column ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .footer-column ul li a {
-      color: #aaa;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    .footer-bottom {
-      text-align: center;
-      padding-top: 16px;
-      border-top: 1px solid #333;
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      .eternal-logo {
-        width: 80px;
-      }
-      h1 {
-        font-size: 24px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Header -->
   <header class="header">
-    <div class="logo">EternalSMP</div>
+    <div class="logo fantasy-font">EternalSMP</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  </header>
-
-  <!-- Sidebar Menu -->
-  <nav id="sidebar" class="sidebar">
+  </header>  <!-- Sidebar Menu -->  <nav id="sidebar" class="sidebar">
     <ul>
       <li><a href="page2.html">Pendaftaran OC</a></li>
       <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd33CH_UBNKC4FrHwIFKMhzR160hNZ0MQ-in7kJdtmK6UQLmQ/viewform" target="_blank">Pendaftaran Server</a></li>
@@ -225,75 +19,27 @@
       <li><a href="#">Dashboard</a></li>
       <li><a href="#">Shop</a></li>
     </ul>
-  </nav>
+  </nav>  <!-- Hero Section -->  <main class="hero fantasy-bg">
+    <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/20250625_141013.png?raw=true" alt="Logo EternalSMP" class="eternal-logo" />
+    <h1 class="title-font">🌍 Eternal SMP Season 14</h1>
+    <p class="subtitle">Petualangan besar telah dimulai. Pilih ras unikmu dan bentuk takdirmu di dunia Astravell.</p><!-- Slider -->
+<div class="slider-wrapper">
+  <button class="slider-btn prev" onclick="prevSlide()">❮</button>
+  <div class="slider-view">
+    <img id="characterImage" class="slide-image" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true" alt="Euria" />
+  </div>
+  <button class="slider-btn next" onclick="nextSlide()">❯</button>
+</div>
 
-  <!-- Hero Section -->
-  <main class="hero">
-    <img src="https://github.com/marcellnw/eternalsmpoc/blob/main/20250625_141013.png?raw=true" alt="Logo EternalSMP" class="eternal-logo">
-    <h1>🌍 Eternal SMP Season 14</h1>
-    <p>Petualangan baru telah dimulai. Pilih ras karaktermu dan bentuk kisahmu sendiri!</p>
+<!-- Info Character -->
+<div class="character-info-box">
+  <h2 id="characterName">Euria 🧽</h2>
+  <p id="characterRace"><strong>Ras:</strong> Manusia Murni</p>
+  <p id="characterDesc">Ras yang memiliki keseimbangan alami dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk pemain yang menginginkan fleksibilitas tinggi dan bisa beradaptasi dengan berbagai peran.</p>
+  <p id="characterRole"><em>Cocok untuk: Semua class – petarung, penyihir, pemburu</em></p>
+</div>
 
-    <!-- Character Slider -->
-    <div class="slider-container">
-      <button class="prev" onclick="prevSlide()">❮</button>
-      <div class="slides">
-        <img class="slide active" src="https://github.com/marcellnw/eternalsmpoc/blob/main/euria.png?raw=true" alt="Euria" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/graveth.png?raw=true" alt="Graveth" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/meredien.png?raw=true" alt="Meredien" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/heretic.png?raw=true" alt="Heretic" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/diablonic.png?raw=true" alt="Diablonic" />
-        <img class="slide" src="https://github.com/marcellnw/eternalsmpoc/blob/main/laurian.png?raw=true" alt="Laurian" />
-      </div>
-      <button class="next" onclick="nextSlide()">❯</button>
-    </div>
-
-    <!-- Character Descriptions -->
-    <section class="character-info">
-      <div class="card active" data-character="Euria">
-        <h2>Euria 🧍‍♂️</h2>
-        <p><strong>Ras:</strong> Manusia Murni</p>
-        <p>Ras yang memiliki keseimbangan alami dalam kekuatan, kecerdasan, dan kelincahan. Cocok untuk pemain yang menginginkan fleksibilitas tinggi dan bisa beradaptasi dengan berbagai peran.</p>
-        <p><em>Cocok untuk: Semua class – petarung, penyihir, pemburu</em></p>
-      </div>
-
-      <div class="card" data-character="Graveth">
-        <h2>Graveth 🦅</h2>
-        <p><strong>Ras:</strong> Makhluk Avian</p>
-        <p>Ras dengan tubuh ringan dan gesit, memiliki kemampuan lompat tinggi dan bisa melayang. Efektif dalam mobilitas tinggi di medan tempur.</p>
-        <p><em>Cocok untuk: Assassin, scout, archer</em></p>
-      </div>
-
-      <div class="card" data-character="Maredien">
-        <h2>Maredien 🌿</h2>
-        <p><strong>Ras:</strong> Elf / Dryad</p>
-        <p>Bangsawan yang terikat dengan kekuatan alam. Punya afinitas tinggi terhadap sihir penyembuhan dan elemen alami.</p>
-        <p><em>Cocok untuk: Support, healer, mage, druid</em></p>
-      </div>
-
-      <div class="card" data-character="Heretic">
-        <h2>Heretic 🌓</h2>
-        <p><strong>Ras:</strong> Campuran Manusia & Diablonic</p>
-        <p>Pewaris kekuatan gelap yang unik dan tidak terduga. Tidak sepenuhnya jahat.</p>
-        <p><em>Cocok untuk: Warlock, dark mage, illusionist</em></p>
-      </div>
-
-      <div class="card" data-character="Diablonic">
-        <h2>Diablonic 🔥</h2>
-        <p><strong>Ras:</strong> Iblis Murni</p>
-        <p>Makhluk kuat, tahan banting, dan penuh energi neraka. Sering mendapat stigma dari ras lain.</p>
-        <p><em>Cocok untuk: Berserker, tank, brute</em></p>
-      </div>
-
-      <div class="card" data-character="Laurian">
-        <h2>Laurian ⚪</h2>
-        <p><strong>Ras:</strong> Manusia Umum (Basic)</p>
-        <p>Ras paling sederhana dan lemah. Diberikan kepada pemain yang mengisi formulir asal-asalan.</p>
-        <p><em>Cocok untuk: Pemula, karakter latar belakang biasa</em></p>
-      </div>
-    </section>
-  </main>
-  <!-- Footer -->
-  <footer class="footer">
+  </main>  <!-- Footer -->  <footer class="footer">
     <div class="footer-top">
       <div class="footer-column">
         <h4>Server</h4>
@@ -322,41 +68,5 @@
     <div class="footer-bottom">
       <p>© 2025 EternalSMP Server. All rights reserved.</p>
     </div>
-  </footer>
-
-  <!-- Script -->
-  <script>
-    function toggleMenu() {
-      const sidebar = document.getElementById("sidebar");
-      sidebar.classList.toggle("active");
-    }
-
-    // Slider logic
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".slide");
-    const cards = document.querySelectorAll(".card");
-
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("active", i === index);
-      });
-      cards.forEach((card, i) => {
-        card.classList.toggle("active", i === index);
-      });
-    }
-
-    function prevSlide() {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      showSlide(currentSlide);
-    }
-
-    function nextSlide() {
-      currentSlide = (currentSlide + 1) % slides.length;
-      showSlide(currentSlide);
-    }
-
-    // Auto-slide every 10s
-    setInterval(nextSlide, 10000);
-  </script>
-</body>
+  </footer>  <script src="script.js"></script></body>
 </html>
