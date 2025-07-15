@@ -211,8 +211,14 @@
       <textarea id="tujuan" name="tujuan" minlength="100" maxlength="500" required></textarea>
 
       <!-- Tombol Aksi -->
-<button type="button" class="btn glow-btn" onclick="playClick(); window.open('eternalsmp-oc-form.html', '_blank')">
-  👁️ Lihat Preview
+<div style="text-align:center; margin-top: 1.5rem;">
+  <button type="button" class="btn glow-btn" onclick="playClick(); window.open('eternalsmp-oc-form.html', '_blank')">
+    👁️ Lihat Preview
+  </button>
+  <button type="button" class="btn glow-btn" onclick="playClick(); submitToDiscord()">
+    📨 Kirim Pendaftaran
+  </button>
+</div>
 </button>
     </form>
   </div>
