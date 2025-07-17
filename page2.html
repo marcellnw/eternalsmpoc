@@ -211,7 +211,7 @@
       </div>
       <!-- Lore & Tujuan -->
       <label for="lore">📖 Lore & Background Karakter</label>
-      <textarea id="lore" name="lore" minlength="300" maxlength="6000" required></textarea>
+      <textarea id="lore" name="lore" minlength="300" maxlength="15000" required></textarea>
       <div id="loreCount" class="char-counter">Jumlah karakter: 0 / minimal 300</div>
 
       <label for="tujuan">🎯 Tujuan & Motivasi Karakter</label>
@@ -259,7 +259,7 @@
   }
 
   updateCharCount("sifat", 50);
-  updateCharCount("lore", 300, 6000);
+  updateCharCount("lore", 300, 15000);
   updateCharCount("tujuan", 100, 500);
 
   // 🔐 Validasi input tambahan
